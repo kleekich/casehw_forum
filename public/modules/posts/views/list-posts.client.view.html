@@ -42,13 +42,15 @@
                     <form class="navbar-form navbar-right" role="search">
                     
                       <div class="form-group">
-                        <button ng-click="showNewPost()" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
+                        <button ng-click="showNewPost()" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
                         
                       </div>
-                      <div class="form-group">
-                      <input type="text" class="form-control" ng-model='query' placeholder="Search">
-                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="ture"></span></button>
-                      </div>
+                       <div class="input-group">
+                          <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+                          <span class="input-group-btn">
+                          <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                          </span>
+                        </div><!-- /input-group -->
                     </form>
                    
                 </div>
@@ -61,35 +63,41 @@
         <div class="alert alert-warning text-center" data-ng-hide="!posts.$resolved || posts.length">
         No Posts yet, why don't you <a href="/#!/posts/create">create one</a>?
         </div>
-         <div class="post-list">
+         
     <div class="list-group">
-        <div class ="row" ng-repeat="post in postsCtrl.posts">
+        <div class ="row" ng-repeat="post in postsCtrl.posts | filter:searchText">
         	
                 <div class="well">
                     <div class="media">
-                            <a  data-ng-href="#!/{{post._id}}" class='list-group-item'>
+                            <!--<a data-ng-href="#!/{{post._id}}" class='list-group-item'>-->
+                            <a ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>  
                             <img class="media-object pull-left" src="http://www.peanut.com/media/catalog/product/cache/1/small_image/250x/8222f1cea6aad972bbfa3d2e81cdd009/r/o/roasted-cashews-whole-cashews-individual_1.jpg">
-                                        <h4 class="media-heading">{{post.title}}</h4>
-                                        <p class="text-right">By {{post.postBy}}</p>
-                                        <p>{{post.content}}</p>
+                                        <h4 class="media-heading"><span ng-bind="post.title"></span></h4>
+                                        <p class="text-right">By <span ng-bind="post.postBy"></span></p>
+                                        <span ng-bin="{{post.content}}"></span>
                                         <ul class="list-inline list-unstyled text-muted">
                                             <li><span><i class="glyphicon glyphicon-calendar"></i></span>{{post.updated | date: "h:mma 'on' MMM d, y"}}</li>
                                             <li>  </li>
                                             <span><i class="glyphicon glyphicon-comment"></i></span><li>{{post.comments}} comments</li>
                                             <li>  </li>
                                             <span><i class="glyphicon glyphicon-thumbs-up"></i></span><li>{{post.likes}} likes</li>
-                                            <li>  </li>
+                                           
+                                            <li id="editBtn">
+                                              
+                                            </li>
+                                            
                                         </ul>
-                         	</a>
-                    </div>
-                </div>
-           
-        </li>
-    
-    </div>
+                                       
+                            </a>
+                         	  <!--<button  class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item pull-right' >
+                                            <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
+                                -->                
+                    </div><!--media-->
+                </div><!--well-->
+    </div><!--row-->
 
 
-</div>
+</div><!--list-group-->
         
        
         

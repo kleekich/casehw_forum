@@ -10,7 +10,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                              <label for="name">postBy</label>
-                             <textarea data-ng-model="postBy" class="form-control" rows="3" required></textarea>
+                             <textarea data-ng-model="postBy" id="postBy" class="form-control" rows="3" required></textarea>
                         </div>
                     </div>
                     
@@ -27,13 +27,13 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="topic">Topic</label>
-                                <select ng-model="topic">
+                                <select data-ng-model="topic" id="topic">
                                                 <li required>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                                      <option value="test topic">"test topic"</a>
                                                 </li>
                                 </select>
-                                <select ng-model="category">
+                                <select data-ng-model="category" id="category">
                                                 <li required>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                                      <option value="test category">"test category"</a>
@@ -58,7 +58,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                              <label for="name">Content</label>
-                             <textarea data-ng-model="content" class="form-control" rows="3" required></textarea>
+                             <textarea data-ng-model="content" id="content" class="form-control" rows="3" required></textarea>
                         </div>
                     </div>
                     
@@ -83,7 +83,7 @@
                 </div>
                 
                 
-                
+               </fieldset> 
                 
                 
             

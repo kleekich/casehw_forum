@@ -3,12 +3,38 @@
 // Posts controller
 var postsApp = angular.module('posts');
 
-postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts',
-	function($scope, $stateParams, Authentication, Posts) {
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log',
+	function($scope, $stateParams, Authentication, Posts, $modal, $log) {
 		
 		this.authentication = Authentication;
 		// Find a list of Posts
 		this.posts = Posts.query();
+		
+		
+		//Open a modal window to Update a single post record
+
+		  this.modalUpdate = function (size, selectedPost) {
+		
+		    var modalInstance = $modal.open({
+		      animation: $scope.animationsEnabled,
+		      templateUrl: 'modules/posts/views/edit-post.client.view.html',
+		      controller: function ($scope, $modalInstance, post) {
+		      	 $scope.post = post;
+		      },
+		      size: size,
+		      resolve: {
+		        post: function () {
+		          return selectedPost;
+		        }
+		      }
+		    });
+		
+		    modalInstance.result.then(function (selectedItem) {
+		      $scope.selected = selectedItem;
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+		  };
 
 
 		
@@ -21,7 +47,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts',
 	}
 ]);
 
-postsApp.controller('PostsEditController', ['$scope', 'Posts',
+postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	function($scope, Posts) {
 
 	}
