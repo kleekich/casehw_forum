@@ -42,7 +42,7 @@
                     <form class="navbar-form navbar-right" role="search">
                     
                       <div class="form-group">
-                        <button ng-click="showNewPost()" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
+                        <button ng-click="" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
                         
                       </div>
                        <div class="input-group">
@@ -70,11 +70,11 @@
                 <div class="well">
                     <div class="media">
                             <!--<a data-ng-href="#!/{{post._id}}" class='list-group-item'>-->
-                            <a ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>  
+                                
                             <img class="media-object pull-left" src="http://www.peanut.com/media/catalog/product/cache/1/small_image/250x/8222f1cea6aad972bbfa3d2e81cdd009/r/o/roasted-cashews-whole-cashews-individual_1.jpg">
                                         <h4 class="media-heading"><span ng-bind="post.title"></span></h4>
                                         <p class="text-right">By <span ng-bind="post.postBy"></span></p>
-                                        <span ng-bin="{{post.content}}"></span>
+                                        <span ng-bind="post.content"></span>
                                         <ul class="list-inline list-unstyled text-muted">
                                             <li><span><i class="glyphicon glyphicon-calendar"></i></span>{{post.updated | date: "h:mma 'on' MMM d, y"}}</li>
                                             <li>  </li>
@@ -89,9 +89,9 @@
                                         </ul>
                                        
                             </a>
-                         	  <!--<button  class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item pull-right' >
+                         	  <button  class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item pull-right' >
                                             <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
-                                -->                
+                                                
                     </div><!--media-->
                 </div><!--well-->
     </div><!--row-->

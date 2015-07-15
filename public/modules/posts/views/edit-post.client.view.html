@@ -1,10 +1,10 @@
 <section data-ng-controller="PostsUpdateController as postUpCtrl">
      <div class="modal-header">
-            <h3 class="modal-title">Edit Post</h3>
+            <h3 class="modal-title">Update Post Title: {{post.title}}</h3>
         </div>
         <div class="modal-body">
            <div class="col-md-12">
-                <form class="" data-ng-submit="update()" novalidate>
+                <form name="updatePostForm">
                     <fieldset>
                 <div class="row">
                     <div class="col-sm-12">
@@ -27,14 +27,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="topic">Topic</label>
-                                <select data-ng-model="post.topic" id="topic">
-                                                <li required>
+                                <select data-ng-model="post.topic" id="topic" required>
+                                                <li>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                                      <option value="test topic">"test topic"</a>
                                                 </li>
                                 </select>
-                                <select data-ng-model="post.category" id="category">
-                                                <li required>
+                                <select data-ng-model="post.category" id="category" required>
+                                                <li>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                                      <option value="test category">"test category"</a>
                                                 </li>
@@ -79,21 +79,9 @@
                 </form>
             </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-success" ng-click="postUpCtrl.update(post); ok()" ng-disabled="updatePostForm.$invalid">Update & Close</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
-                </div>
 		
 </section>
 

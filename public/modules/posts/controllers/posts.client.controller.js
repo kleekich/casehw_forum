@@ -20,6 +20,17 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      templateUrl: 'modules/posts/views/edit-post.client.view.html',
 		      controller: function ($scope, $modalInstance, post) {
 		      	 $scope.post = post;
+		      	 
+		      	 $scope.ok = function () {
+		      	 	if(updatePostForm.$valid){
+				    $modalInstance.close($scope.post);
+				  }
+		      	 };
+				
+				  $scope.cancel = function () {
+				    $modalInstance.dismiss('cancel');
+				  };
+		      	 
 		      },
 		      size: size,
 		      resolve: {
@@ -49,6 +60,18 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts',
 
 postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	function($scope, Posts) {
+		
+		// Update existing Post
+		this.update = function(updatedPost) {
+			var post = updatedPost;
+
+			post.$update(function() {
+				//redirection
+				//$location.path('posts/' + post._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
 	}
 ]);

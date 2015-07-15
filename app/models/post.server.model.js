@@ -45,7 +45,7 @@ var PostSchema = new Schema({
 	postBy: {
 		type: String,
 		default: '',
-		required: 'please identify author',
+		//required: 'please identify author',
 		trim: true
 	},
 	user: {
