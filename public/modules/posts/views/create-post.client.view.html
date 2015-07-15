@@ -6,6 +6,15 @@
         <form class="" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                             <label for="name">postBy</label>
+                             <textarea data-ng-model="postBy" class="form-control" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="title">Title</label>
@@ -17,24 +26,58 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="topic">Topic</label>
-                                <div class="controls">
-                                    <input type="text" data-ng-model="topic" id="topic" class="form-control" required>
-                                </div>
+                                <select ng-model="topic">
+                                                <li required>
+                                                     <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
+                                                     <option value="test topic">"test topic"</a>
+                                                </li>
+                                </select>
+                                <select ng-model="category">
+                                                <li required>
+                                                     <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
+                                                     <option value="test category">"test category"</a>
+                                                </li>
+                                </select>
+                                
+                                
+                                        <!--    <div class="btn-group" ng-model='newPost.postTopic'>
+                                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action <span class="caret"></span>
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                 <li ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</li></a>
+                                              </ul>
+                                            </div>
+                                      -->  
+                                        
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
                              <label for="name">Content</label>
                              <textarea data-ng-model="content" class="form-control" rows="3" required></textarea>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pull-right">
                         <div class="form-group">
                             <button id="submit-button" type="submit" class="btn btn-primary pull-right">Post</button>
                             <button ng-click="hideNewPost=true" class="btn btn-danger pull-right">Cancel</button>
                         </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                     <div class="form-group">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div clas-"alert alert-danger" role="alert">
+        					    <strong data-ng-bind="error"></strong>
+        					</div>
+        				</div>
                     </div>
                 </div>
                 
