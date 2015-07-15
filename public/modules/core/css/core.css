@@ -116,7 +116,7 @@ li {
 }
 
 
-/**for posts */
+/*******FOR POST********/
 
 .well: hover {
 moz-box-shadow: 0 0 10px #ccc; 
@@ -124,11 +124,26 @@ webkit-box-shadow: 0 0 10px #ccc;
 box-shadow: 0 0 10px #ccc; 
 
 }
-
+.list-group {
+    background-color:white;
+}
 
 /**new-post */
 #newPost .row{
     padding-top:10px;
+}
+
+.page-header {
+    margin-top:100px;
+    
+}
+.control-lable {
+    font-size: 20px;
+} 
+
+.pull-left {
+    width: 10%;
+
 }
 
 

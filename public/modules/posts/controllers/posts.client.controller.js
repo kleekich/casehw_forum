@@ -1,9 +1,34 @@
 'use strict';
 
 // Posts controller
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
-	function($scope, $stateParams, $location, Authentication, Posts) {
-		$scope.authentication = Authentication;
+var postsApp = angular.module('posts');
+
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts',
+	function($scope, $stateParams, Authentication, Posts) {
+		
+		this.authentication = Authentication;
+		// Find a list of Posts
+		this.posts = Posts.query();
+
+
+		
+	}
+]);
+
+postsApp.controller('PostsCreateController', ['$scope', 'Posts',
+	function($scope, Posts) {
+	
+	}
+]);
+
+postsApp.controller('PostsEditController', ['$scope', 'Posts',
+	function($scope, Posts) {
+
+	}
+]);
+		
+		
+/*		
 		$scope.currentCategoryIndex = 0;
 		$scope.currentCategory = 'Share Your Ideas';
 		$scope.postTopic = 'Business Strategy';
@@ -114,16 +139,11 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
 			});
 		};
 
-		// Find a list of Posts
-		$scope.find = function() {
-			$scope.posts = Posts.query();
-		};
-
+	
 		// Find existing Post
 		$scope.findOne = function() {
 			$scope.post = Posts.get({ 
 				postId: $stateParams.postId
 			});
 		};
-	}
-]);
+*/
