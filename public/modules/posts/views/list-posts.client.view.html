@@ -42,7 +42,7 @@
                     <form class="navbar-form navbar-right" role="search">
                     
                       <div class="form-group">
-                        <button ng-click="" class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
+                        <button ng-click="postsCtrl.modalCreate('md')"  class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
                         
                       </div>
                        <div class="input-group">
@@ -60,9 +60,7 @@
         
         
         <!-- posts -->
-        <div class="alert alert-warning text-center" data-ng-hide="!posts.$resolved || posts.length">
-        No Posts yet, why don't you <a href="/#!/posts/create">create one</a>?
-        </div>
+        
          
     <div class="list-group">
         <div class ="row" ng-repeat="post in postsCtrl.posts | filter:searchText">
@@ -89,16 +87,19 @@
                                         </ul>
                                        
                             </a>
-                         	  <button  class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item pull-right' >
+                         	  <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item pull-right' >
                                             <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
-                                                
+                              <button class="btn btn-danger" ng-click="postsCtrl.remove(post)" class='list-group-item pull-right' >
+                                            <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
                     </div><!--media-->
                 </div><!--well-->
     </div><!--row-->
 
 
 </div><!--list-group-->
-        
+<div class="alert alert-warning text-center" data-ng-hide="!posts.$resolved || posts.length">
+        No Posts yet, why don't you <a href="/#!/posts/create">create one</a>?
+</div>        
        
         
         <!--Pagination-->

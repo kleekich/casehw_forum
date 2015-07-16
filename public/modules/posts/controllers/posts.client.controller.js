@@ -10,6 +10,36 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		// Find a list of Posts
 		this.posts = Posts.query();
 		
+		//Open a modal window to Create a single post record
+
+		  this.modalCreate = function (size) {
+		
+		    var modalInstance = $modal.open({
+		      animation: $scope.animationsEnabled,
+		      templateUrl: 'modules/posts/views/create-post.client.view.html',
+		      controller: function ($scope, $modalInstance) {
+		      
+		      	 
+		      	 $scope.ok = function () {
+		      	 	if(createPostForm.$valid){
+				    $modalInstance.close();
+		      	 	}
+		      	 };
+				
+				  $scope.cancel = function () {
+				    $modalInstance.dismiss('cancel');
+				  };
+		      	 
+		      },
+		      size: size
+		    });
+		
+		    modalInstance.result.then(function (selectedItem) {
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+		  };
+		
 		
 		//Open a modal window to Update a single post record
 
@@ -46,14 +76,61 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      $log.info('Modal dismissed at: ' + new Date());
 		    });
 		  };
+		  
+		  	// Remove existing Post
+		this.remove = function(post) {
+			if ( post ) { 
+				post.$remove();
+
+				for (var i in this.posts) {
+					if (this.posts [i] === post) {
+						this.posts.splice(i, 1);
+					}
+				}
+			} else {
+				this.post.$remove(function() {
+					//delete then direct to list
+					//$location.path('posts');
+				});
+			}
+		};
 
 
 		
 	}
 ]);
 
-postsApp.controller('PostsCreateController', ['$scope', 'Posts',
-	function($scope, Posts) {
+postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
+	function($scope, Posts, Notify) {
+		// Create new Post
+		this.create = function() {
+			// Create new Post object
+			var post = new Posts ({
+				title: this.title,
+				content: this.content,
+				category: this.category,
+				topic: this.topic,
+				postBy: this.postBy
+			});
+
+			// Redirect after save
+			post.$save(function(response) {
+				//$location.path('posts/' + response._id);
+				
+				Notify.sendMsg('NewPost', {'id' : response._id});
+				
+				// Clear form fields
+				$scope.title = '';
+				$scope.content = '';
+				$scope.category = '';
+				$scope.topic = '';
+				$scope.postBy = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+	
+	
 	
 	}
 ]);
@@ -75,6 +152,24 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 
 	}
 ]);
+
+postApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
+	return{
+		restrict: 'E',
+		transclude: true,
+		templateUrl: 'modules/posts/views/post-list-template.html',
+		link: function(scope, element, attrs){
+			
+			//when a new post is added, update the post list
+			
+			Notify.getMsg('NewPost', function(event, data) {
+				
+				scope.potsCtrl.posts = Posts.query();
+			})
+		}
+	};
+	
+}]);
 		
 		
 /*		
@@ -134,59 +229,11 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 			}
 		];
 		
-		// Create new Post
-		$scope.create = function() {
-			// Create new Post object
-			var post = new Posts ({
-				title: this.title,
-				content: this.content,
-				category: this.category,
-				topic: this.topic,
-				postBy: this.postBy
-			});
+		
 
-			// Redirect after save
-			post.$save(function(response) {
-				$location.path('posts/' + response._id);
+	
 
-				// Clear form fields
-				$scope.title = '';
-				$scope.content = '';
-				$scope.category = '';
-				$scope.topic = '';
-				$scope.postBy = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		// Remove existing Post
-		$scope.remove = function(post) {
-			if ( post ) { 
-				post.$remove();
-
-				for (var i in $scope.posts) {
-					if ($scope.posts [i] === post) {
-						$scope.posts.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.post.$remove(function() {
-					$location.path('posts');
-				});
-			}
-		};
-
-		// Update existing Post
-		$scope.update = function() {
-			var post = $scope.post;
-
-			post.$update(function() {
-				$location.path('posts/' + post._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+	
 
 	
 		// Find existing Post
