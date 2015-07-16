@@ -28,11 +28,11 @@ angular.module('posts')
 				var unbind = $rootScope.$on(msg, func);
 				
 				if (scope) {
-					scope.$on('destroy', unbind)
+					scope.$on('destroy', unbind);
 				}
 			};
 			
 			return notify;
 			
-		}
+	}
 	]);

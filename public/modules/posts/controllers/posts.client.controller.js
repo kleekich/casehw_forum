@@ -18,7 +18,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      animation: $scope.animationsEnabled,
 		      templateUrl: 'modules/posts/views/create-post.client.view.html',
 		      controller: function ($scope, $modalInstance) {
-		      
+		      	
 		      	 
 		      	 $scope.ok = function () {
 		      	 	if(createPostForm.$valid){
@@ -54,7 +54,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      	 $scope.ok = function () {
 		      	 	if(updatePostForm.$valid){
 				    $modalInstance.close($scope.post);
-				  }
+				  	}
 		      	 };
 				
 				  $scope.cancel = function () {
@@ -117,14 +117,16 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 			post.$save(function(response) {
 				//$location.path('posts/' + response._id);
 				
+				//Clear form fields
+				$scope.title = '';
+				$scope.content= '';
+				$scope.category= '';
+				$scope.topic= '';
+				$scope.postBy= '';
+				
+				
 				Notify.sendMsg('NewPost', {'id' : response._id});
 				
-				// Clear form fields
-				$scope.title = '';
-				$scope.content = '';
-				$scope.category = '';
-				$scope.topic = '';
-				$scope.postBy = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -153,7 +155,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	}
 ]);
 
-postApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
+postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	return{
 		restrict: 'E',
 		transclude: true,
@@ -164,8 +166,9 @@ postApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 			
 			Notify.getMsg('NewPost', function(event, data) {
 				
-				scope.potsCtrl.posts = Posts.query();
-			})
+				scope.postCreCtrl.posts = Posts.query();
+				
+			});
 		}
 	};
 	

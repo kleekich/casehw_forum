@@ -13,7 +13,7 @@ angular.module('posts').config(['$stateProvider',
 		state('viewPost', {
 			url: '/posts/:postId',
 			templateUrl: 'modules/posts/views/view-post.client.view.html'
-		})
+		});
 
 	}
 ]);

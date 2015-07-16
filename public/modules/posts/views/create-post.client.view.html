@@ -1,15 +1,15 @@
-<section data-ng-controller="PostsCreateController as postCreCtrl">
+<section data-ng-controller="PostsCreateController as postCtrl">
      <div class="modal-header">
-            <h3 class="modal-title">New Post </h3>
+            <h3 class="modal-title">New Post</h3>
         </div>
         <div class="modal-body">
-            <form name="createPostForm">
+                <form name="createPostForm">
                     <fieldset>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
                              <label for="name">postBy</label>
-                             <textarea data-ng-model="postCreCtrl.postBy" id="postBy" class="form-control" rows="3" required></textarea>
+                             <input type="text" data-ng-model="postCtrl.postBy" id="postBy" class="form-control" rows="3" required></textarea>
                         </div>
                     </div>
                     
@@ -19,23 +19,23 @@
                         <div class="form-group">
                             <label class="control-label" for="title">Title</label>
                             <div class="controls">
-                                <input type="text" data-ng-model="postCreCtrl.title" id="title" class="form-control" required>
+                                <input type="text" data-ng-model="postCtrl.title" id="title" class="form-control" required>
                             </div>
                         </div>   
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="topic">Topic</label>
-                                <select data-ng-model="postCreCtrl.topic" id="topic" required>
+                                <select data-ng-model="postCtrl.topic" id="topic" required>
                                                 <li>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
-                                                     <option value="test topic">"test topic"</a>
+                                                     <option value="test topic">test topic</a>
                                                 </li>
                                 </select>
-                                <select data-ng-model="postCreCtrl.category" id="category" required>
+                                <select data-ng-model="postCtrl.category" id="category" required>
                                                 <li>
                                                      <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
-                                                     <option value="test category">"test category"</a>
+                                                     <option value="test category">test category</a>
                                                 </li>
                                 </select>
                                 
@@ -57,7 +57,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                              <label for="name">Content</label>
-                             <textarea data-ng-model="postCreCtrl.content" id="content" class="form-control" rows="3" required></textarea>
+                             <textarea data-ng-model="postCtrl.content" id="content" class="form-control" rows="3" required></textarea>
                         </div>
                     </div>
                     
@@ -78,10 +78,13 @@
                 </form>
             </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-click="postCreCtrl.create(); ok()" ng-disabled="createPostForm.$invalid">Save & Close</button>
+            <button class="btn btn-success" ng-click="postCtrl.create(); ok()" ng-disabled="createPostForm.$invalid">Save & Close</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
 		
 </section>
+
+
+
 
 

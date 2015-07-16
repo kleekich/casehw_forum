@@ -64,7 +64,8 @@ var PostSchema = new Schema({
 		trim: true
 	},
 	hot: {
-		type: Boolean
+		type: Boolean,
+		default: false
 	}
 });
 
