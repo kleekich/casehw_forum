@@ -11,7 +11,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		this.posts = Posts.query();
 		
 		//Open a modal window to Create a single post record
-
+		 $scope.animationsEnabled = true;
 		  this.modalCreate = function (size) {
 		
 		    var modalInstance = $modal.open({
@@ -21,9 +21,9 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      	
 		      	 
 		      	 $scope.ok = function () {
-		      	 	if(createPostForm.$valid){
+		      	 	
 				    $modalInstance.close();
-		      	 	}
+		      	 	
 		      	 };
 				
 				  $scope.cancel = function () {
@@ -52,9 +52,9 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      	 $scope.post = post;
 		      	 
 		      	 $scope.ok = function () {
-		      	 	if(updatePostForm.$valid){
+		      	 	
 				    $modalInstance.close($scope.post);
-				  	}
+				  	
 		      	 };
 				
 				  $scope.cancel = function () {
@@ -90,7 +90,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			} else {
 				this.post.$remove(function() {
 					//delete then direct to list
-					//$location.path('posts');
+					//$location.path('posts'); 
 				});
 			}
 		};
@@ -115,17 +115,9 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 
 			// Redirect after save
 			post.$save(function(response) {
-				//$location.path('posts/' + response._id);
-				
-				//Clear form fields
-				$scope.title = '';
-				$scope.content= '';
-				$scope.category= '';
-				$scope.topic= '';
-				$scope.postBy= '';
 				
 				
-				Notify.sendMsg('NewPost', {'id' : response._id});
+				Notify.sendMsg('NewPost', {'id': response._id});
 				
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
@@ -166,7 +158,7 @@ postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 			
 			Notify.getMsg('NewPost', function(event, data) {
 				
-				scope.postCreCtrl.posts = Posts.query();
+				scope.postsCtrl.posts = Posts.query();
 				
 			});
 		}
