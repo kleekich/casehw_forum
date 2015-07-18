@@ -10,6 +10,12 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		// Find a list of Posts
 		this.posts = Posts.query();
 		
+		// Find existing Post
+		$scope.findOne = function() {
+			$scope.post = Posts.get({ 
+				postId: $stateParams.postId
+			});
+		};
 		//Open a modal window to Create a single post record
 		 $scope.animationsEnabled = true;
 		  this.modalCreate = function (size) {
@@ -252,6 +258,14 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	}
 ]);
 
+postsApp.controller('SinglePostController', ['$scope', 'Posts',
+	function($scope, Posts) {
+	
+		
+
+
+	}
+]);
 postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	return{
 		restrict: 'E',
@@ -336,10 +350,4 @@ postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	
 
 	
-		// Find existing Post
-		$scope.findOne = function() {
-			$scope.post = Posts.get({ 
-				postId: $stateParams.postId
-			});
-		};
 */
