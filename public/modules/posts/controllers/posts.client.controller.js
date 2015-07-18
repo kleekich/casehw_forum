@@ -3,8 +3,8 @@
 // Posts controller
 var postsApp = angular.module('posts');
 
-postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log',
-	function($scope, $stateParams, Authentication, Posts, $modal, $log) {
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location',
+	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location) {
 		
 		this.authentication = Authentication;
 		// Find a list of Posts
@@ -83,10 +83,14 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		    });
 		  };
 		  
+		  
+		  
+		  
 		  	// Remove existing Post
 		this.remove = function(post) {
 			if ( post ) { 
 				post.$remove();
+				$location.path('/posts');
 
 				for (var i in this.posts) {
 					if (this.posts [i] === post) {
@@ -96,7 +100,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			} else {
 				this.post.$remove(function() {
 					//delete then direct to list
-					//$location.path('posts'); 
+					$location.path('/posts');
 				});
 			}
 		};
@@ -104,47 +108,47 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	
 	
 	$scope.comments = [
-	{
-		postId: '55a9aada3dd4d91b08290cf2',
-		postBy: "mozzi",
-		content: "I'm in Spain now",
-		numLikes: 100
-
-	},
-
-	{	
-		postId: '55a9aada3dd4d91b08290cf2',
-		postBy: "Kangsik",
-		content: "Have a nice trip!",
-		numLikes: 3
-
-	},
-
-	{
-	    postId: '55a9a2183dd4d91b08290cf1',
-		postBy: "Nice guy",
-		content: "Is this single page?",
-		numLikes: 1000
-
-	},
-
-	{
-		postId: '55a9a2183dd4d91b08290cf1',
-		postBy: "Mozzi",
-		content: "Nice guys!!",
-		numLikes: 24
-
-
-	},
-
-	{
-		postId: '55a9aada3dd4d91b08290cf2',
-		postBy: "Jake",
-		content: "Tokyo was awesome!",
-		numLikes: 45
-
-	}
-];
+		{
+			postId: '55a9aada3dd4d91b08290cf2',
+			postBy: "mozzi",
+			content: "I'm in Spain now",
+			numLikes: 100
+	
+		},
+	
+		{	
+			postId: '55a9aada3dd4d91b08290cf2',
+			postBy: "Kangsik",
+			content: "Have a nice trip!",
+			numLikes: 3
+	
+		},
+	
+		{
+		    postId: '55a9a2183dd4d91b08290cf1',
+			postBy: "Nice guy",
+			content: "Is this single page?",
+			numLikes: 1000
+	
+		},
+	
+		{
+			postId: '55a9a2183dd4d91b08290cf1',
+			postBy: "Mozzi",
+			content: "Nice guys!!",
+			numLikes: 24
+	
+	
+		},
+	
+		{
+			postId: '55a9aada3dd4d91b08290cf2',
+			postBy: "Jake",
+			content: "Tokyo was awesome!",
+			numLikes: 45
+	
+		}
+	];
 
 		
 	}
