@@ -52,6 +52,10 @@ img {
     position: absolute;
   left: 20px;
 }
+.comment-header{
+  padding-top: 50px;
+  padding-left: 15px;
+}
 .comment-submit-btn{
     float:right;
 }
@@ -69,4 +73,12 @@ img {
 }
 .media-body{
     padding-top: 6px;
+}
+.pull-right {
+      position: absolute;
+  right: 40px;
+}
+
+.h1 {
+padding-left: 15px;
 }
