@@ -25,31 +25,21 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
+                            <label class="control-label" for="category">Category</label>
+                                <div class-"controls">
+                                    <select data-ng-model="post.category" id="category" class="form-control" required>
+                                        <option ng-repeat="category in categories">{{category.title}}</option>     
+                                                         <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
+                                    </select>
+                                </div>
                             <label class="control-label" for="topic">Topic</label>
-                                <select data-ng-model="post.topic" id="topic" required>
-                                                <li>
-                                                     <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
-                                                     <option value="test topic">"test topic"</a>
-                                                </li>
-                                </select>
-                                <select data-ng-model="post.category" id="category">
-                                                <li>
-                                                     <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
-                                                     <option value="test category">"test category"</a>
-                                                </li>
-                                </select>
+                                <div class-"controls">
+                                    <select data-ng-model="post.topic"  id="category" class="form-control" required>
+                                        <option ng-repeat="topic in selectedCategory.topics">{{topic['name']}}</option>     
+                                                         <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
+                                    </select>
+                                </div>
                                 
-                                
-                                        <!--    <div class="btn-group" ng-model='newPost.postTopic'>
-                                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action <span class="caret"></span>
-                                              </button>
-                                              <ul class="dropdown-menu">
-                                                 <li ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</li></a>
-                                              </ul>
-                                            </div>
-                                      -->  
-                                        
                         </div>
                     </div>
                 </div>

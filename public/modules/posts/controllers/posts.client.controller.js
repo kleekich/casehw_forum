@@ -102,6 +102,59 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 
 postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 	function($scope, Posts, Notify) {
+		$scope.categories = [
+			
+			{
+				id: 1,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 2,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 3,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		$scope.selectedCategory = $scope.categories[1];
 		// Create new Post
 		this.create = function() {
 			// Create new Post object
@@ -131,7 +184,59 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 
 postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	function($scope, Posts) {
-		
+		$scope.categories = [
+			
+			{
+				id: 1,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 2,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 3,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		$scope.selectedCategory = $scope.categories[1];
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;
