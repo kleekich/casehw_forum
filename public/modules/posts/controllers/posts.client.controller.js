@@ -284,6 +284,17 @@ postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	};
 	
 }]);
+
+postsApp.directive('commentList', ['Posts', 'Notify', function(Posts, Notify){
+	return{
+		restrict: 'E',
+		transclude: true,
+		templateUrl: 'modules/posts/views/comment-list-template.html',
+		link: function(scope, element, attrs){}
+		
+		
+	};	
+}]);
 		
 		
 /*		

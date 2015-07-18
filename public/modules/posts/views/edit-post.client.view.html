@@ -29,14 +29,12 @@
                                 <div class-"controls">
                                     <select data-ng-model="post.category" id="category" class="form-control" required>
                                         <option ng-repeat="category in categories">{{category.title}}</option>     
-                                                         <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                     </select>
                                 </div>
                             <label class="control-label" for="topic">Topic</label>
                                 <div class-"controls">
                                     <select data-ng-model="post.topic"  id="category" class="form-control" required>
                                         <option ng-repeat="topic in selectedCategory.topics">{{topic['name']}}</option>     
-                                                         <!--<option ng-repeat="topic in currentCategory.topics" value="topic['name']">{{topic['name']}}</a>-->
                                     </select>
                                 </div>
                                 
