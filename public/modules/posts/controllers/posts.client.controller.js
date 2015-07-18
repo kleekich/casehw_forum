@@ -100,7 +100,51 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				});
 			}
 		};
+	
+	
+	
+	$scope.comments = [
+	{
+		postId: '55a9aada3dd4d91b08290cf2',
+		postBy: "mozzi",
+		content: "I'm in Spain now",
+		numLikes: 100
 
+	},
+
+	{	
+		postId: '55a9aada3dd4d91b08290cf2',
+		postBy: "Kangsik",
+		content: "Have a nice trip!",
+		numLikes: 3
+
+	},
+
+	{
+	    postId: '55a9a2183dd4d91b08290cf1',
+		postBy: "Nice guy",
+		content: "Is this single page?",
+		numLikes: 1000
+
+	},
+
+	{
+		postId: '55a9a2183dd4d91b08290cf1',
+		postBy: "Mozzi",
+		content: "Nice guys!!",
+		numLikes: 24
+
+
+	},
+
+	{
+		postId: '55a9aada3dd4d91b08290cf2',
+		postBy: "Jake",
+		content: "Tokyo was awesome!",
+		numLikes: 45
+
+	}
+];
 
 		
 	}

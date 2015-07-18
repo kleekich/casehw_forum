@@ -1,7 +1,24 @@
-.page-header {
-    margin-top:200px;
-    
+/*******FOR POST********/
+
+.well: hover {
+moz-box-shadow: 0 0 10px #ccc; 
+webkit-box-shadow: 0 0 10px #ccc; 
+box-shadow: 0 0 10px #ccc; 
+
 }
+
+
+#editBtn {
+    position: absolute;
+  right: 0;
+}
+
+/**new-post */
+#newPost .row{
+    padding-top:10px;
+}
+
+
 .control-lable {
     font-size: 20px;
 } 
@@ -9,4 +26,47 @@
 .pull-left {
     width: 10%;
 
+}
+
+
+.control-lable {
+    font-size: 20px;
+} 
+
+
+/**single post view**/
+
+img {
+    width: 100%;
+
+}
+.pager {
+ margin-top: 35px;
+
+}
+.edit-and-delete-btns {
+    position: absolute;
+  right: 20px;
+}
+.like{
+    position: absolute;
+  left: 20px;
+}
+.comment-submit-btn{
+    float:right;
+}
+.back-to-list-btn{
+  position: absolute;
+  left: 20px;
+
+}
+.next-btn{
+  position: absolute;
+  right: 20px;
+}
+.media-left{
+    padding-top:6px;
+}
+.media-body{
+    padding-top: 6px;
 }
