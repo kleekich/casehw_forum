@@ -5,6 +5,7 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
+		$scope.me = Authentication.user.lastName;
 		$scope.selectedTopic = null;
 		$scope.categories = [
 			
@@ -204,7 +205,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	];
 	
 		
-		$scope.sendTopic = function(selectedTopic) {
+		$scope.selectTopic = function(selectedTopic) {
 			if(selectedTopic=='all'){
 				var topicArray= $scope.selectedCategory.topics;
 				var allTopicString='';
@@ -217,7 +218,6 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				$scope.topic=  selectedTopic
 				
 			}
-		    
 		  };
 
 		
@@ -225,8 +225,9 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 ]);
 
 
-postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
-	function($scope, Posts, Notify) {
+postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Authentication',
+	function($scope, Posts, Notify, Authentication) {
+		
 		$scope.categories = [
 			
 			{
@@ -281,14 +282,16 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 		];
 		$scope.selectedCategory = $scope.categories[1];
 		// Create new Post
+		
 		this.create = function() {
 			// Create new Post object
 			var post = new Posts ({
+				postBy: Authentication.user.displayName,
 				title: this.title,
 				content: this.content,
 				category: this.category,
 				topic: this.topic,
-				postBy: this.postBy
+				
 			});
 
 			// Redirect after save

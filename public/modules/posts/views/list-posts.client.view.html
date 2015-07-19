@@ -1,7 +1,8 @@
 <section data-ng-controller="PostsController as postsCtrl">
-	<h1>asdfasfd</h1>
-	<h1>asdfasfd</h1>
-	<h1>asdfasfd</h1>
+<h1>{{me}}</h1>
+<h1>{{me}}</h1>
+<h1>{{me}}</h1>
+<h1>{{me}}</h1>
 
         <!--
         <div class="category-nav">
@@ -12,7 +13,7 @@
         -->
         <tabset>
             <tab heading="All Posts" ng-click="sendTopic('all')" ></tab>
-            <tab ng-repeat="topic in selectedCategory.topics" ng-click="sendTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
+            <tab ng-repeat="topic in selectedCategory.topics" ng-click="selectTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
             </tab>
         </tabset>
         <!--post-nav-bar-->
