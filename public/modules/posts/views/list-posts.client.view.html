@@ -1,60 +1,6 @@
 <section data-ng-controller="PostsController as postsCtrl">
-<!--Forum Main Cover -->
 
-      <div class="jumbotron">
-          <h1>Share Your Cashew Ideas</h1>
-          <p>Share your story, interest, and ideas.</p>
-      </div>
-      <!-- breadcrumb -->
-      <div class='row'>
-        <div class= 'col-md-7'>
-          <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a ng-click="backToForumHome()"href="#">Forum</a></li>
-            <li class="active">coverTitle</li>
-          </ol>
-        </div>
-      <!--newPost/search-->
-        <div class = 'col-md-5'  ng-hide="hideSearchBar" id= "search-bar">
-            <form class="navbar-form navbar-left" id="searchForm" role="search">
-              <div class="form-group">
-                <ul>
-                  <ii><input ng-model="query" type="text" class="form-control" placeholder="Search"></ii>
-                  <li><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="ture"></button></ii>
-                </ul>              
-              </div>
-            </form>
-        </div>
-      </div>
-      
-      <!--forum-guide-->
-	  <div class="forum-guide">
-	          <h2>coverTitle</h2>
-	          <p>coverSnippet</p>
-	  </div>
-<!--Forum Main Cover-->
-
-<!--Board Board-->
-	<div id="forum-board">
-		<ul>
-			    <div class="row">
-			    	<li ng-repeat="category in categories">
-			    		<div class="col-md-4">
-			      			<a href="https://cashew-forum-project2-kleekich.c9.io/#!/posts">category.title </a>
-			      			<p>category.snippet</p>
-			      		</div>
-			    	</li>
-			    </div>
-		</ul>
-    </div> 
-        <!--
-        <div class="category-nav">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li ng-repeat="topic in selectedCategory.topics" role="presentation"><a ng-model="selectedTopic">{{topic['name']}}<span class="badge">42</span></a></li>
-            </ul>
-        </div>
-        -->
+  
         <tabset>
             <tab heading="All Posts" ng-click="sendTopic('all')" ></tab>
             <tab ng-repeat="topic in selectedCategory.topics" ng-click="selectTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">

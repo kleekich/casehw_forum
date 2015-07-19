@@ -5,9 +5,8 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
-		$scope.hideForumBoard = false;
-		$scope.hideListPostClientView = true;
 		
+		//Category data
 		$scope.categories = [
 			{
 				id: 0,
@@ -65,8 +64,11 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				]
 			}
 		];
+		
+		$scope.hideForumBoard = false;
+		$scope.hideListPostClientView = true;
 		$scope.category = $scope.categories[0];
-		$scope.showCover = function(category) {
+		$scope.selectCategory = function(category) {
 		  $scope.category = category;
 		  $scope.hideForumBoard = true;
 		  $scope.hideListPostClientView = false;
@@ -394,13 +396,11 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 
 	}
 ]);
-
-
-postsApp.directive('forumMainCover', ['Posts', function(Posts){
+postsApp.directive('listPostsClientView', ['Posts', function(Posts){
 	return{
 		restrict: 'E',
 		transclude: true,
-		templateUrl: 'modules/core/views/forum-main-cover-template.html'
+		templateUrl: 'modules/posts/views/list-posts.client.view.html'
 	};
 	
 	
