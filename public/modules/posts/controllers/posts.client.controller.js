@@ -3,9 +3,62 @@
 // Posts controller
 var postsApp = angular.module('posts');
 
-postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location',
-	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location) {
-		
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
+	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
+		$scope.selectedTopic = null;
+		$scope.categories = [
+			
+			{
+				id: 1,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 2,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 3,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		$scope.selectedCategory = $scope.categories[1];
 		this.authentication = Authentication;
 		// Find a list of Posts
 		this.posts = Posts.query();
@@ -149,10 +202,28 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	
 		}
 	];
+	
+		
+		$scope.sendTopic = function(selectedTopic) {
+			if(selectedTopic=='all'){
+				var topicArray= $scope.selectedCategory.topics;
+				var allTopicString='';
+				var i=0;
+				for(i; i < topicArray.length; i++){
+					allTopicString.concat(topicArray[i].name);
+				}
+				$scope.topic = allTopicString;
+			}else{
+				$scope.topic=  selectedTopic
+				
+			}
+		    
+		  };
 
 		
 	}
 ]);
+
 
 postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 	function($scope, Posts, Notify) {
@@ -230,9 +301,6 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
 				$scope.error = errorResponse.data.message;
 			});
 		};
-	
-	
-	
 	}
 ]);
 
@@ -343,7 +411,10 @@ postsApp.directive('commentList', ['Posts', 'Notify', function(Posts, Notify){
 		
 	};	
 }]);
-		
+
+	
+
+	
 		
 /*		
 		$scope.currentCategoryIndex = 0;

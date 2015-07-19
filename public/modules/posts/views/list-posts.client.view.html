@@ -3,16 +3,18 @@
 	<h1>asdfasfd</h1>
 	<h1>asdfasfd</h1>
 
-
+        <!--
         <div class="category-nav">
-            <ul class="nav nav-tabs" role="tablist">
-              <!--<li ng-repeat="topic in currentCategory.topics" role="presentation" class="active"><a href="">{{topic['name']}}<span class="badge">42</span></a></li>
-              -->
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li ng-repeat="topic in selectedCategory.topics" role="presentation"><a ng-model="selectedTopic">{{topic['name']}}<span class="badge">42</span></a></li>
             </ul>
         </div>
-
-
-       
+        -->
+        <tabset>
+            <tab heading="All Posts" ng-click="sendTopic('all')" ></tab>
+            <tab ng-repeat="topic in selectedCategory.topics" ng-click="sendTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
+            </tab>
+        </tabset>
         <!--post-nav-bar-->
         <div post-nav-bar="">
             <nav class="navbar navbar-default">
@@ -59,7 +61,7 @@
         
        <post-list></post-list> 
         
-  
+
        
         
         <!--Pagination-->
@@ -74,4 +76,7 @@
             <li class="disabled"><a href="" aria-label="Next"><span aria-hidden="true">»</span></a></li>
           </ul>
     </nav>
+    
+    
+    
 </section>
