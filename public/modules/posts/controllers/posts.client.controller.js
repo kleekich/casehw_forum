@@ -5,8 +5,8 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
-		$scope.coverTitle = $rootScope.coverTitle;
-		$scope.selectedTopic = null;
+		$scope.hideForumBoard = false;
+		$scope.hideListPostClientView = true;
 		$scope.categories = [
 			
 			{
@@ -59,7 +59,18 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				]
 			}
 		];
-		$scope.selectedCategory = $scope.categories[1];
+		$scope.showCover = function(category) {
+		  $scope.category = category;
+		  $scope.hideForumBoard = true;
+		  $scope.hideListPostClientView = false;
+		};
+		
+		
+		
+		
+		
+		
+		
 		this.authentication = Authentication;
 		// Find a list of Posts
 		this.posts = Posts.query();
@@ -207,7 +218,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		$scope.selectTopic = function(selectedTopic) {
 			if(selectedTopic==='all'){
-				var topicArray= $scope.selectedCategory.topics;
+				var topicArray= $scope.category.topics;
 				var allTopicString='';
 				var i=0;
 				for(i; i < topicArray.length; i++){
@@ -280,7 +291,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				]
 			}
 		];
-		$scope.selectedCategory = $scope.categories[1];
+		$scope.category = $scope.categories[1];
 		// Create new Post
 		
 		this.create = function() {
@@ -361,7 +372,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 				]
 			}
 		];
-		$scope.selectedCategory = $scope.categories[1];
+		$scope.category = $scope.categories[1];
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;
