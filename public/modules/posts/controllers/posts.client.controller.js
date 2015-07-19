@@ -5,6 +5,7 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
+		$scope.coverTitle = $rootScope.coverTitle;
 		$scope.selectedTopic = null;
 		$scope.categories = [
 			
