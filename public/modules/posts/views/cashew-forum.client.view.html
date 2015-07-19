@@ -12,7 +12,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a ng-click="backToForumHome()"href="#">Forum</a></li>
-            <li class="active">coverTitle</li>
+            <li class="active">{{category.title}}</li>
           </ol>
         </div>
       <!--newPost/search-->
@@ -30,8 +30,8 @@
       
       <!--forum-guide-->
 	  <div class="forum-guide">
-	          <h2>coverTitle</h2>
-	          <p>coverSnippet</p>
+	          <h2>{{category.title}}</h2>
+	          <p>{{category.snippet}}</p>
 	  </div>
 <!--Forum Main Cover-->
 
@@ -39,10 +39,10 @@
 	<div id="forum-board">
 		<ul>
 			    <div class="row">
-			    	<li ng-repeat="category in categories">
+			    	<li ng-repeat="category in categories |limitTo:-3">
 			    		<div class="col-md-4">
-			      			<a href="https://cashew-forum-project2-kleekich.c9.io/#!/posts" ng-hide="hideForumBoard">category.title</a>
-			      			<p>category.snippet</p>
+			      			<a href="https://cashew-forum-project2-kleekich.c9.io/#!/posts" ng-hide="hideForumBoard">{{category.title}}</a>
+			      			<p>{{category.snippet}}</p>
 			      		</div>
 			    	</li>
 			    </div>

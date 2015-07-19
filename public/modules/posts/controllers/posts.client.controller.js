@@ -7,8 +7,14 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
 		$scope.hideForumBoard = false;
 		$scope.hideListPostClientView = true;
+		
 		$scope.categories = [
-			
+			{
+				id: 0,
+				title: 'Cashew Forum',
+				snippet: 'Welcome to Cashew Forum',
+				topics: []
+			},
 			{
 				id: 1,
 				title: 'Introduce Yourself',
@@ -59,6 +65,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				]
 			}
 		];
+		$scope.category = $scope.categories[0];
 		$scope.showCover = function(category) {
 		  $scope.category = category;
 		  $scope.hideForumBoard = true;
@@ -388,14 +395,6 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 	}
 ]);
 
-postsApp.controller('SinglePostController', ['$scope', 'Posts',
-	function($scope, Posts) {
-	
-		
-
-
-	}
-]);
 
 postsApp.directive('forumMainCover', ['Posts', function(Posts){
 	return{
