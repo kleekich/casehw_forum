@@ -36,12 +36,12 @@
 <!--Forum Main Cover-->
 
 <!--Board Board-->
-	<div id="forum-board">
+	<div id="forum-board" ng-hide="hideForumBoard">
 		<ul>
 			    <div class="row">
 			    	<li ng-repeat="category in categories |limitTo:-(categories.length-1)">
 			    		<div class="col-md-4">
-			      			<a ng-click="selectCategory(category)" ng-hide="hideForumBoard">{{category.title}}</a>
+			      			<a ng-click="selectCategory(category)" >{{category.title}}</a>
 			      			<p>{{category.snippet}}</p>
 			      		</div>
 			    	</li>
