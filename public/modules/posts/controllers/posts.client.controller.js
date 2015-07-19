@@ -3,8 +3,9 @@
 // Posts controller
 var postsApp = angular.module('posts');
 
-postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
-	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
+
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
+	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
 		
 		//Category data
 		$scope.categories = [
@@ -12,7 +13,18 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				id: 0,
 				title: 'Cashew Forum',
 				snippet: 'Welcome to Cashew Forum',
-				topics: []
+				topics: [{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}]
 			},
 			{
 				id: 1,
@@ -65,20 +77,20 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			}
 		];
 		
+		
+		
+		
 		$scope.hideForumBoard = false;
 		$scope.hideListPostClientView = true;
-		$scope.category = $scope.categories[0];
+
+		
+		
 		$scope.selectCategory = function(category) {
 		  $scope.category = category;
+		  Category.category = category;//setting category object to Category service
 		  $scope.hideForumBoard = true;
 		  $scope.hideListPostClientView = false;
 		};
-		
-		
-		
-		
-		
-		
 		
 		this.authentication = Authentication;
 		// Find a list of Posts
@@ -239,14 +251,17 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				
 			}
 		  };
-
+		
+		$scope.reloadRoute = function() {
+			$state.reload();
+		};
 		
 	}
 ]);
 
 
-postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Authentication',
-	function($scope, Posts, Notify, Authentication) {
+postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Authentication', 'Category',
+	function($scope, Posts, Notify, Authentication, Category) {
 		
 		$scope.categories = [
 			
@@ -300,7 +315,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				]
 			}
 		];
-		$scope.category = $scope.categories[1];
+		$scope.category = Category.category;
 		// Create new Post
 		
 		this.create = function() {
@@ -327,8 +342,8 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 	}
 ]);
 
-postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
-	function($scope, Posts) {
+postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
+	function($scope, Posts, Category) {
 		$scope.categories = [
 			
 			{
@@ -381,7 +396,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
 				]
 			}
 		];
-		$scope.category = $scope.categories[1];
+		$scope.category = Category.category;
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;

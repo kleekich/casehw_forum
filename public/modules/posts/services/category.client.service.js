@@ -4,12 +4,10 @@ angular.module('posts').factory('Category', [
 	function() {
 		// Category service logic
 		// ...
-
+		var category ={}
 		// Public API
 		return {
-			someMethod: function() {
-				return true;
-			}
+			category
 		};
 	}
 ]);

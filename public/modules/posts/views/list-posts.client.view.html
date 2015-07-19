@@ -3,7 +3,7 @@
   
         <tabset>
             <tab heading="All Posts" ng-click="sendTopic('all')" ></tab>
-            <tab ng-repeat="topic in selectedCategory.topics" ng-click="selectTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
+            <tab ng-repeat="topic in category.topics" ng-click="selectTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
             </tab>
         </tabset>
         <!--post-nav-bar-->
