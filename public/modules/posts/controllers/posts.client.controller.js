@@ -5,7 +5,6 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http) {
-		$scope.me = Authentication.user.lastName;
 		$scope.selectedTopic = null;
 		$scope.categories = [
 			
@@ -147,7 +146,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				$location.path('/posts');
 
 				for (var i in this.posts) {
-					if (this.posts [i] === post) {
+					if (this.posts[i] === post) {
 						this.posts.splice(i, 1);
 					}
 				}
@@ -164,32 +163,32 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	$scope.comments = [
 		{
 			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: "mozzi",
-			content: "I'm in Spain now",
+			postBy: 'mozzi',
+			content: 'Im in Spain now',
 			numLikes: 100
 	
 		},
 	
 		{	
 			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: "Kangsik",
-			content: "Have a nice trip!",
+			postBy: 'Kangsik',
+			content: 'Have a nice trip!',
 			numLikes: 3
 	
 		},
 	
 		{
 		    postId: '55a9a2183dd4d91b08290cf1',
-			postBy: "Nice guy",
-			content: "Is this single page?",
+			postBy: 'Nice guy',
+			content: 'Is this single page?',
 			numLikes: 1000
 	
 		},
 	
 		{
 			postId: '55a9a2183dd4d91b08290cf1',
-			postBy: "Mozzi",
-			content: "Nice guys!!",
+			postBy: 'Mozzi',
+			content: 'Nice guys!!',
 			numLikes: 24
 	
 	
@@ -197,8 +196,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	
 		{
 			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: "Jake",
-			content: "Tokyo was awesome!",
+			postBy: 'Jake',
+			content: 'Tokyo was awesome!',
 			numLikes: 45
 	
 		}
@@ -206,7 +205,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	
 		
 		$scope.selectTopic = function(selectedTopic) {
-			if(selectedTopic=='all'){
+			if(selectedTopic==='all'){
 				var topicArray= $scope.selectedCategory.topics;
 				var allTopicString='';
 				var i=0;
@@ -215,7 +214,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				}
 				$scope.topic = allTopicString;
 			}else{
-				$scope.topic=  selectedTopic
+				$scope.topic=  selectedTopic;
 				
 			}
 		  };
@@ -385,6 +384,17 @@ postsApp.controller('SinglePostController', ['$scope', 'Posts',
 
 	}
 ]);
+
+postsApp.directive('forumMainCover', ['Posts', function(Posts){
+	return{
+		restrict: 'E',
+		transclude: true,
+		templateUrl: 'modules/core/views/forum-main-cover-template.html'
+	};
+	
+	
+}]);
+
 postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	return{
 		restrict: 'E',
@@ -414,73 +424,3 @@ postsApp.directive('commentList', ['Posts', 'Notify', function(Posts, Notify){
 		
 	};	
 }]);
-
-	
-
-	
-		
-/*		
-		$scope.currentCategoryIndex = 0;
-		$scope.currentCategory = 'Share Your Ideas';
-		$scope.postTopic = 'Business Strategy';
-		$scope.categories = [
-			
-			{
-				id: 'introduce-yourself',
-				title: 'Introduce Yourself',
-				snippet: 'Get to know other cashew members',
-				topics: [
-					{ name: 'Friends',
-						numPosts: 0,
-						numNewPosts:0,
-					}
-					]
-			},
-			{
-				id: 'share-your-ideas',
-				title: 'Share Your Ideas',
-				snippet: 'Share ideas, interests, strategies',
-				topics: [
-					{ name: 'Business Strategy',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'Custommer Strategy',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
-			},
-			{
-				id: 'feedback-for-cashew',
-				title: 'Feedback For Cashew',
-				snippet: 'We likes to hear from you!',
-				topics: [
-					{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
-			}
-		];
-		
-		
-
-	
-
-	
-
-	
-*/

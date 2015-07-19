@@ -1,7 +1,7 @@
 'use strict';
+var coreApp = angular.module('core');
 
-
-angular.module('core').controller('HomeController', ['$scope', 'Authentication', 
+coreApp.controller('HomeController', ['$scope', 'Authentication', 
 	function($scope, Authentication) {
 	
 		
@@ -255,7 +255,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		
 		
 		$scope.showCover = function(category) {
-			$scope.currentCategory = category;
+		  $scope.currentCategory = category;
 		  $scope.coverTitle = category.title;
 		  $scope.coverSnippet = category.snippet;
 		  $scope.currentCategoryIndex = 1;
@@ -293,115 +293,20 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		};
 		
 	
-		/*	
-				
-		
-		
-		
-		
-		*/
-		$scope.tests = [
-			{name: 'kangsik'}
-			
-			];
-		
-		$scope.test = function(){
-			$scope.tests.push({name: $scope.testName});
-			$scope.testName = '';
-		};
-		
 		
 		
 	}
 ]);
-/*Controllers*/
-angular.module('core').controller('PostController', function ($scope){
-	
-	
-	
-});
 
 
 
 /*Directives*/
 
-angular.module('core').directive('forumCover', function() { 
+coreApp.directive('forumMainCover', function() { 
   return { 
-    restrict: 'E', 
-    transclude:'true',
-    templateUrl: 'modules/core/directives/forum-cover.html' 
-  };
-});
-
-angular.module('core').directive('forumBoard', function() { 
-  return { 
-    restrict: 'E', 
-    transclude:'true',
-
-    templateUrl: 'modules/core/directives/forum-board.html' 
-  }; 
-});
-
-angular.module('core').directive('forumGuide', function() { 
-  return { 
-    restrict: 'E', 
-    transclude:'true',
-    templateUrl: 'modules/core/directives/forum-guide.html' 
-  }; 
-});
-
-angular.module('core').directive('forumPostView', function() { 
-  return { 
-    restrict: 'E', 
-    transclude:'true',
-    templateUrl: 'modules/core/directives/forum-post-view.html' 
-  }; 
-});
-
-angular.module('core').directive('postListNavbar', function(){
-  return { 
-    restrict: 'E', 
-    transclude:'true',
-    templateUrl: 'modules/core/directives/post-list-navbar.html' 
-  }; 
-});
-
-angular.module('core').directive('popularPostsSlides', function(){
-  return { 
-    restrict: 'E', 
-    transclude:'true',
-    templateUrl: 'modules/core/directives/popular-posts-slides.html' 
-  }; 
-});
-
-angular.module('core').directive('postNavbar', function(){
-  return {
-    restrict: 'E',
-    transclude: 'true',
-    templateUrl: 'modules/core/directives/post-navbar.html' 
-  };
-});
-
-angular.module('core').directive('posts', function(){
-  return {
-    restrict: 'E',
-    transclude: 'true',
-    templateUrl: 'modules/core/directives/posts.html' 
-  };
-});
-angular.module('core').directive('pagenation', function(){
-  return {
-    restrict: 'E',
-    transclude: 'true',
-    templateUrl: 'modules/core/directives/pagenation.html' 
-  };
-});
-
-angular.module('core').directive('newPost', function(){
-  return {
-    restrict: 'E',
-    transclude: 'true',
-    templateUrl: 'modules/core/directives/new-post.html' 
+    restrict: 'A', 
+    transclude: true,
+    templateUrl: 'modules/core/views/forum-main-cover-template.html'
   };
 });
 
