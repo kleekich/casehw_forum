@@ -239,13 +239,17 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		$scope.selectTopic = function(selectedTopic) {
 			if(selectedTopic==='all'){
-				var topicArray= $scope.category.topics;
-				var allTopicString='';
-				var i=0;
-				for(i; i < topicArray.length; i++){
-					allTopicString.concat(topicArray[i].name);
-				}
-				$scope.topic = allTopicString;
+				//var topicArray= $scope.category.topics;
+				//var allTopicString='';
+				//var i=0;
+				//for(i; i < topicArray.length; i++){
+				//	allTopicString.concat(topicArray[i].name);
+				//}
+				//$scope.topic = "";
+				//this.post = Posts.query();
+				$state.reload();
+		  		$scope.hideForumBoard = true;
+		  		$scope.hideListPostClientView = false;
 			}else{
 				$scope.topic=  selectedTopic;
 				
