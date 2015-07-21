@@ -7,76 +7,73 @@ var postsApp = angular.module('posts');
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
 		
-		//Category data
+		//Forum Categories data
 		$scope.categories = [
-			{
-				id: 0,
+			{   
 				title: 'Cashew Forum',
-				snippet: 'Welcome to Cashew Forum',
-				topics: [{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}]
+				snippet: 'Welcome to Cashew Forum! '
 			},
-			{
-				id: 1,
+			{   
 				title: 'Introduce Yourself',
-				snippet: 'Get to know other cashew members',
-				topics: [
-					{ name: 'Friends',
-						numPosts: 0,
-						numNewPosts:0,
-					}
-					]
+				snippet: 'Get to know other cashew members, and build a cashew community!',
 			},
 			{
-				id: 2,
 				title: 'Share Your Ideas',
-				snippet: 'Share ideas, interests, strategies',
-				topics: [
-					{ name: 'Business Strategy',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'Custommer Strategy',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				snippet: 'Share ideas, interests, strategies.',
 			},
 			{
-				id: 3,
 				title: 'Feedback For Cashew',
 				snippet: 'We likes to hear from you!',
-				topics: [
-					{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				
 			}
 		];
 		
+		
+		//Forum Topics
+		$scope.topics = [
+					{
+						group: 'Introduce Yourself',
+						label: 'Cashew Community',
+						numPosts: 0
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Business Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Custommer Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Feedback For Cashew',
+						label: 'Q&A',
+						numPosts: 0
+						
+					},
+					{ 
+						group: 'Feedback For Cashew',
+						label: 'Feed Back',
+						numPosts: 0
+						
+					},
+					{ 	
+						group: 'Feedback For Cashew',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					}
+					
+				];
 		
 		
 		
@@ -250,7 +247,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				//$state.reload();
 		  		//$scope.hideForumBoard = true;
 		  		//$scope.hideListPostClientView = false;
-		  		this.posts = Posts.query();
+		  		
 			}else{
 				$scope.topic=  selectedTopic;
 				
@@ -269,57 +266,72 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 	function($scope, Posts, Notify, Authentication, Category) {
 		
 		$scope.categories = [
-			
-			{
-				id: 1,
+			{   
+				title: 'Cashew Forum',
+				snippet: 'Welcome to Cashew Forum! '
+			},
+			{   
 				title: 'Introduce Yourself',
-				snippet: 'Get to know other cashew members',
-				topics: [
-					{ name: 'Friends',
-						numPosts: 0,
-						numNewPosts:0,
-					}
-					]
+				snippet: 'Get to know other cashew members, and build a cashew community!',
 			},
 			{
-				id: 2,
 				title: 'Share Your Ideas',
-				snippet: 'Share ideas, interests, strategies',
-				topics: [
-					{ name: 'Business Strategy',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'Custommer Strategy',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				snippet: 'Share ideas, interests, strategies.',
 			},
 			{
-				id: 3,
 				title: 'Feedback For Cashew',
 				snippet: 'We likes to hear from you!',
-				topics: [
-					{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				
 			}
 		];
+		
+		
+		//Forum Topics
+		$scope.topics = [
+					{
+						group: 'Introduce Yourself',
+						label: 'Cashew Community',
+						numPosts: 0
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Business Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Custommer Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Feedback For Cashew',
+						label: 'Q&A',
+						numPosts: 0
+						
+					},
+					{ 
+						group: 'Feedback For Cashew',
+						label: 'Feed Back',
+						numPosts: 0
+						
+					},
+					{ 	
+						group: 'Feedback For Cashew',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					}
+					
+				];
+				
 		$scope.category = Category.category;
 		// Create new Post
 		
@@ -349,58 +361,73 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 
 postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 	function($scope, Posts, Category) {
-		$scope.categories = [
-			
-			{
-				id: 1,
+	$scope.categories = [
+			{   
+				title: 'Cashew Forum',
+				snippet: 'Welcome to Cashew Forum! '
+			},
+			{   
 				title: 'Introduce Yourself',
-				snippet: 'Get to know other cashew members',
-				topics: [
-					{ name: 'Friends',
-						numPosts: 0,
-						numNewPosts:0,
-					}
-					]
+				snippet: 'Get to know other cashew members, and build a cashew community!',
 			},
 			{
-				id: 2,
 				title: 'Share Your Ideas',
-				snippet: 'Share ideas, interests, strategies',
-				topics: [
-					{ name: 'Business Strategy',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'Custommer Strategy',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				snippet: 'Share ideas, interests, strategies.',
 			},
 			{
-				id: 3,
 				title: 'Feedback For Cashew',
 				snippet: 'We likes to hear from you!',
-				topics: [
-					{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
+				
 			}
 		];
+		
+		
+		//Forum Topics
+		$scope.topics = [
+					{
+						group: 'Introduce Yourself',
+						label: 'Cashew Community',
+						numPosts: 0
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Business Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Custommer Strategy',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Share Your Ideas',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					},
+					{
+						group: 'Feedback For Cashew',
+						label: 'Q&A',
+						numPosts: 0
+						
+					},
+					{ 
+						group: 'Feedback For Cashew',
+						label: 'Feed Back',
+						numPosts: 0
+						
+					},
+					{ 	
+						group: 'Feedback For Cashew',
+						label: 'Other Topics',
+						numPosts: 0
+						
+					}
+					
+				];
+				
 		$scope.category = Category.category;
 		// Update existing Post
 		this.update = function(updatedPost) {
