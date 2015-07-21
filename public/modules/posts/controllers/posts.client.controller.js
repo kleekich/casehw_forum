@@ -92,6 +92,60 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		  $scope.hideListPostClientView = false;
 		};
 		
+		$scope.categories = [
+			
+			{
+				id: 0,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 1,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 2,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		
+		
 		this.authentication = Authentication;
 		// Find a list of Posts
 		this.posts = Posts.query();
@@ -263,6 +317,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	}
 ]);
 
+<<<<<<< HEAD
 
 postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Authentication', 'Category',
 	function($scope, Posts, Notify, Authentication, Category) {
@@ -335,6 +390,64 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				];
 				
 		$scope.selectedCategory = Category.sharedCategory.title;
+=======
+postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify',
+	function($scope, Posts, Notify) {
+		$scope.categories = [
+			
+			{
+				id: 1,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 2,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 3,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		$scope.selectedCategory = $scope.categories[1];
+		
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59
 		// Create new Post
 		
 		this.create = function() {
@@ -363,6 +476,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 	}
 ]);
 
+<<<<<<< HEAD
 postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 	function($scope, Posts, Category) {
 	$scope.categories = [
@@ -434,6 +548,64 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 				
 		$scope.selectedCategory = Category.sharedCategory.title;
 		$scope.selectedTopic = Category.sharedTopic.label;
+=======
+postsApp.controller('PostsUpdateController', ['$scope', 'Posts',
+	function($scope, Posts) {
+			$scope.categories = [
+			
+			{
+				id: 1,
+				title: 'Introduce Yourself',
+				snippet: 'Get to know other cashew members',
+				topics: [
+					{ name: 'Friends',
+						numPosts: 0,
+						numNewPosts:0,
+					}
+					]
+			},
+			{
+				id: 2,
+				title: 'Share Your Ideas',
+				snippet: 'Share ideas, interests, strategies',
+				topics: [
+					{ name: 'Business Strategy',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'Custommer Strategy',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			},
+			{
+				id: 3,
+				title: 'Feedback For Cashew',
+				snippet: 'We likes to hear from you!',
+				topics: [
+					{ name: 'Q&A',
+						numPosts: 4,
+						numNewPosts:4,
+					},
+					{ name: 'feedBack',
+						numPosts: 1,
+						numNewPosts: 1,
+					},
+					{ name: 'Other Topics',
+						numPosts: 2,
+						numNewPosts: 2,
+					}
+				]
+			}
+		];
+		$scope.selectedCategory = $scope.categories[1];
+		
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;
@@ -448,6 +620,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 
 	}
 ]);
+<<<<<<< HEAD
 postsApp.directive('listPostsClientView', ['Posts', function(Posts){
 	return{
 		restrict: 'E',
@@ -457,6 +630,8 @@ postsApp.directive('listPostsClientView', ['Posts', function(Posts){
 	
 	
 }]);
+=======
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59
 
 postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	return{
@@ -476,6 +651,7 @@ postsApp.directive('postList', ['Posts', 'Notify', function(Posts, Notify){
 	};
 	
 }]);
+<<<<<<< HEAD
 
 postsApp.directive('commentList', ['Posts', 'Notify', function(Posts, Notify){
 	return{
@@ -487,3 +663,27 @@ postsApp.directive('commentList', ['Posts', 'Notify', function(Posts, Notify){
 		
 	};	
 }]);
+=======
+		
+		
+/*		
+		$scope.currentCategoryIndex = 0;
+		$scope.currentCategory = 'Share Your Ideas';
+		$scope.postTopic = 'Business Strategy';
+		
+		
+		
+
+	
+
+	
+
+	
+		// Find existing Post
+		$scope.findOne = function() {
+			$scope.post = Posts.get({ 
+				postId: $stateParams.postId
+			});
+		};
+*/
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59

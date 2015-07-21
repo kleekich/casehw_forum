@@ -27,17 +27,29 @@
                         <div class="form-group">
                             <label class="control-label" for="category">Category</label>
                                 <div class-"controls">
+<<<<<<< HEAD
                                     <select data-ng-model="selectedCategory" id="category" class="form-control" required>
                                         <option ng-repeat="category in categories | limitTo:-(categories.length-1)">{{category.title}}</option>     
+=======
+                                    <select data-ng-model="post.category" id="category" class="form-control" required>
+                                        <option ng-repeat="category in categories">{{category.title}}</option>     
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59
                                     </select>
                                 </div>
                             <label class="control-label" for="topic">Topic</label>
                                 <div class-"controls">
+<<<<<<< HEAD
                                     <select data-ng-model="selectedTopic"  id="topic" class="form-control" required>
                                         <option ng-repeat="topic in topics | filter: {group: selectedCategory}">{{topic.label}}</option>     
                                     </select>
                                 </div>
                                 
+=======
+                                    <select data-ng-model="post.topic"  id="category" class="form-control" required>
+                                        <option ng-repeat="topic in selectedCategory.topics">{{topic['name']}}</option>     
+                                    </select>
+                                </div>
+>>>>>>> c86bffb791c60c13b81d260cbee082a8f3ca9c59
                         </div>
                     </div>
                 </div>
