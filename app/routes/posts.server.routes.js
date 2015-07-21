@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var posts = require('../../app/controllers/posts.server.controller');
 
 	// Posts Routes
-	app.route('/posts')
+	app.route('/forum')
 		.get(posts.list)
 		.post(users.requiresLogin, posts.create);
 
-	app.route('/posts/:postId')
+	app.route('/forum/:postId')
 		.get(posts.read)
 		.put(users.requiresLogin, posts.hasAuthorization, posts.update)
 		.delete(users.requiresLogin, posts.hasAuthorization, posts.delete);

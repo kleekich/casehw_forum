@@ -433,6 +433,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 				];
 				
 		$scope.selectedCategory = Category.sharedCategory.title;
+		$scope.selectedTopic = Category.sharedTopic.label;
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;

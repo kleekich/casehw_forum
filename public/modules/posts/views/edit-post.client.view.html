@@ -27,14 +27,14 @@
                         <div class="form-group">
                             <label class="control-label" for="category">Category</label>
                                 <div class-"controls">
-                                    <select data-ng-model="post.category" id="category" class="form-control" required>
-                                        <option ng-repeat="category in categories">{{category.title}}</option>     
+                                    <select data-ng-model="selectedCategory" id="category" class="form-control" required>
+                                        <option ng-repeat="category in categories | limitTo:-(categories.length-1)">{{category.title}}</option>     
                                     </select>
                                 </div>
                             <label class="control-label" for="topic">Topic</label>
                                 <div class-"controls">
-                                    <select data-ng-model="postCtrl.topic"  id="category" class="form-control" required>
-                                        <option ng-repeat="topic in topics | filter: {group:category}">{{topic.label}}</option>     
+                                    <select data-ng-model="selectedTopic"  id="topic" class="form-control" required>
+                                        <option ng-repeat="topic in topics | filter: {group: selectedCategory}">{{topic.label}}</option>     
                                     </select>
                                 </div>
                                 
