@@ -1,9 +1,8 @@
-<section data-ng-controller="PostsController as postsCtrl">
 
   
         <tabset>
-            <tab heading="All Posts" ng-click="sendTopic('all')" ></tab>
-            <tab ng-repeat="topic in category.topics" ng-click="selectTopic(topic['name'])" heading="{{topic['name']}}" active="topic.active" disable="topic.disabled">
+            <tab heading="All Posts" ng-click="selectTopic('all')" ></tab>
+            <tab ng-repeat="topic in topics | filter: {group: selectedCategory}" ng-click="selectTopic(topic)" heading="{{topic.label}}" active="topic.active" disable="topic.disabled">
             </tab>
         </tabset>
         <!--post-nav-bar-->
@@ -70,4 +69,3 @@
     
     
     
-</section>

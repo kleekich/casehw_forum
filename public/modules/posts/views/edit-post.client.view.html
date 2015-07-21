@@ -33,8 +33,8 @@
                                 </div>
                             <label class="control-label" for="topic">Topic</label>
                                 <div class-"controls">
-                                    <select data-ng-model="post.topic"  id="category" class="form-control" required>
-                                        <option ng-repeat="topic in category.topics">{{topic['name']}}</option>     
+                                    <select data-ng-model="postCtrl.topic"  id="category" class="form-control" required>
+                                        <option ng-repeat="topic in topics | filter: {group:category}">{{topic.label}}</option>     
                                     </select>
                                 </div>
                                 

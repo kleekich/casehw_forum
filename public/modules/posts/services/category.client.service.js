@@ -4,10 +4,12 @@ angular.module('posts').factory('Category', [
 	function() {
 		// Category service logic
 		// ...
-		var category ={}
+		var sharedCategory ={};
+		var sharedTopic={};
 		// Public API
 		return {
-			category
+			sharedCategory,
+			sharedTopic
 		};
 	}
 ]);

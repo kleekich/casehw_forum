@@ -6,7 +6,8 @@ var postsApp = angular.module('posts');
 
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
-		
+		$scope.selectedCategory = 'Cashew Forum';
+		$scope.selectedSnippet = 'Welcome to Cashew Forum!';
 		//Forum Categories data
 		$scope.categories = [
 			{   
@@ -82,9 +83,11 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 
 		
 		
-		$scope.selectCategory = function(category) {
-		  $scope.category = category;
-		  Category.category = category;//setting category object to Category service
+		$scope.selectCategory = function(categoryObj) {
+		  console.log('category selected: ' + categoryObj.title);
+		  $scope.selectedCategory = categoryObj.title;
+		  $scope.selectedSnippet = categoryObj.snippet;
+		  Category.sharedCategory = categoryObj;//setting category object to Category service
 		  $scope.hideForumBoard = true;
 		  $scope.hideListPostClientView = false;
 		};
@@ -173,7 +176,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		this.remove = function(post) {
 			if ( post ) { 
 				post.$remove();
-				$location.path('/posts');
+				$location.path('/forum');
+				
 
 				for (var i in this.posts) {
 					if (this.posts[i] === post) {
@@ -183,7 +187,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			} else {
 				this.post.$remove(function() {
 					//delete then direct to list
-					$location.path('/posts');
+					$location.path('/forum');
 				});
 			}
 		};
@@ -234,23 +238,21 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 	];
 	
 		
-		$scope.selectTopic = function(selectedTopic) {
-			if(selectedTopic==='all'){
-				//var topicArray= $scope.category.topics;
-				//var allTopicString='';
-				//var i=0;
-				//for(i; i < topicArray.length; i++){
-				//	allTopicString.concat(topicArray[i].name);
-				//}
-				//$scope.topic = "";
-				//this.post = Posts.query();
-				//$state.reload();
-		  		//$scope.hideForumBoard = true;
-		  		//$scope.hideListPostClientView = false;
+		$scope.selectTopic = function(topicObj) {
+			console.log('topic selected: ' + topicObj.label);
+			if(topicObj.label==='all'){
+				var topicArray= $scope.topics;
+				var allTopicString='';
+				var i=0;
+				for(i; i < topicArray.length; i++){
+					allTopicString.concat(topicArray[i].name);
+				}
+				$scope.selectedTopic= allTopicString;
+				
 		  		
 			}else{
-				$scope.topic=  selectedTopic;
-				
+				$scope.selectedTopic=  topicObj.label;
+				Category.sharedTopic = topicObj;
 			}
 		  };
 		
@@ -332,7 +334,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 					
 				];
 				
-		$scope.category = Category.category;
+		$scope.selectedCategory = Category.sharedCategory.title;
 		// Create new Post
 		
 		this.create = function() {
@@ -341,7 +343,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				postBy: Authentication.user.displayName,
 				title: this.title,
 				content: this.content,
-				category: this.category,
+				category: $scope.selectedCategory,
 				topic: this.topic,
 				
 			});
@@ -356,6 +358,8 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				$scope.error = errorResponse.data.message;
 			});
 		};
+		
+
 	}
 ]);
 
@@ -428,7 +432,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 					
 				];
 				
-		$scope.category = Category.category;
+		$scope.selectedCategory = Category.sharedCategory.title;
 		// Update existing Post
 		this.update = function(updatedPost) {
 			var post = updatedPost;

@@ -12,7 +12,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a ng-click="reloadRoute()">Forum</a></li>
-            <li class="active">{{category.title}}</li>
+            <li class="active">{{selectedCategory}}</li>
           </ol>
         </div>
       <!--newPost/search-->
@@ -30,8 +30,8 @@
       
       <!--forum-guide-->
 	  <div class="forum-guide">
-	          <h2>{{category.title}}</h2>
-	          <p>{{category.snippet}}</p>
+	          <h2>{{selectedCategory}}</h2>
+	          <p>{{selectedSnippet}}</p>
 	  </div>
 <!--Forum Main Cover-->
 
@@ -41,8 +41,8 @@
 			    <div class="row">
 			    	<li ng-repeat="category in categories |limitTo:-(categories.length-1)">
 			    		<div class="col-md-4">
-			      			<a ng-click="selectCategory(category)" >{{category.title}}</a>
-			      			<p>{{category.snippet}}</p>
+			      			<a ng-click="selectCategory(category)">{{category.title}}</a>
+			      			<p>{{category.snippet}}</pZ>
 			      		</div>
 			    	</li>
 			    </div>

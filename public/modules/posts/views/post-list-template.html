@@ -2,7 +2,7 @@
         
          
     <div class="list-group">
-        <div class ="row" ng-repeat="post in postsCtrl.posts| filter: category.title | filter: topic | filter: searchText">
+        <div class ="row" ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText">
         	
                 <div class="well">
                     <div class="media">
