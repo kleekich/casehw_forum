@@ -247,9 +247,10 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				//}
 				//$scope.topic = "";
 				//this.post = Posts.query();
-				$state.reload();
-		  		$scope.hideForumBoard = true;
-		  		$scope.hideListPostClientView = false;
+				//$state.reload();
+		  		//$scope.hideForumBoard = true;
+		  		//$scope.hideListPostClientView = false;
+		  		this.posts = Posts.query();
 			}else{
 				$scope.topic=  selectedTopic;
 				
