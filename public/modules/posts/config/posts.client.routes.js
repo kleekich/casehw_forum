@@ -6,7 +6,7 @@ angular.module('posts').config(['$stateProvider',
 		// Posts state routing
 		$stateProvider.
 		state('listPosts', {
-			url: '/forum',
+			url: '/posts',
 			templateUrl: 'modules/posts/views/cashew-forum.client.view.html'
 		}).
 

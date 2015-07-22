@@ -51,6 +51,24 @@ exports.update = function(req, res) {
 		}
 	});
 };
+/**
+ * Like a Post
+ */
+exports.update = function(req, res) {
+	var post = req.post ;
+
+	post = _.extend(post , req.body);
+
+	post.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(post);
+		}
+	});
+};
 
 /**
  * Delete an Post
