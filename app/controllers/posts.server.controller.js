@@ -124,3 +124,96 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+
+/**
+ * For comments
+ * */
+ 
+ /**
+ * Create a comment
+ */
+exports.createComment = function(req, res) {
+	var comment = new Comment(req.body);
+	comment.user = req.user;
+
+	comment.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(comment);
+		}
+	});
+};
+
+
+/**
+ * Update a Comment
+ */
+exports.updateComment = function(req, res) {
+	var comment = req.comment ;
+
+	comment = _.extend(comment , req.body);
+
+	comment.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(comment);
+		}
+	});
+};
+/**
+ * Like a Post
+ */
+exports.likeComment = function(req, res) {
+	var comment = req.comment ;
+
+	comment = _.extend(comment , req.body);
+
+	comment.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(comment);
+		}
+	});
+};
+
+/**
+ * Delete an Post
+ */
+exports.deleteComment = function(req, res) {
+	var post = req.post ;
+
+	post.remove(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(post);
+		}
+	});
+};
+
+/**
+ * List of Posts
+ */
+exports.listComment = function(req, res) { 
+	Post.find().sort('-created').populate('user', 'displayName').exec(function(err, posts) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(posts);
+		}
+	});
+};
