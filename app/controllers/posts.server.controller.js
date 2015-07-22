@@ -126,12 +126,8 @@ exports.hasAuthorization = function(req, res, next) {
 };
 
 
-/**
- * For comments
- * */
- 
  /**
- * Create a comment
+ * Create a Comment
  */
 exports.createComment = function(req, res) {
 	var comment = new Comment(req.body);
@@ -168,8 +164,9 @@ exports.updateComment = function(req, res) {
 		}
 	});
 };
+
 /**
- * Like a Post
+ * Like a Comment
  */
 exports.likeComment = function(req, res) {
 	var comment = req.comment ;
@@ -187,8 +184,9 @@ exports.likeComment = function(req, res) {
 	});
 };
 
+
 /**
- * Delete an Post
+ * Delete a Comment
  */
 exports.deleteComment = function(req, res) {
 	var comment = req.comment ;
@@ -204,10 +202,11 @@ exports.deleteComment = function(req, res) {
 	});
 };
 
+
 /**
- * List of Posts
+ * List of Comments
  */
-exports.listComment = function(req, res) { 
+exports.listComments = function(req, res) { 
 	Comment.find().sort('-created').populate('user', 'displayName').exec(function(err, comments) {
 		if (err) {
 			return res.status(400).send({
