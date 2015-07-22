@@ -149,6 +149,7 @@ exports.createComment = function(req, res) {
 };
 
 
+
 /**
  * Update a Comment
  */
@@ -190,15 +191,15 @@ exports.likeComment = function(req, res) {
  * Delete an Post
  */
 exports.deleteComment = function(req, res) {
-	var post = req.post ;
+	var comment = req.comment ;
 
-	post.remove(function(err) {
+	comment.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(post);
+			res.jsonp(comment);
 		}
 	});
 };
@@ -207,13 +208,13 @@ exports.deleteComment = function(req, res) {
  * List of Posts
  */
 exports.listComment = function(req, res) { 
-	Post.find().sort('-created').populate('user', 'displayName').exec(function(err, posts) {
+	Comment.find().sort('-created').populate('user', 'displayName').exec(function(err, comments) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(posts);
+			res.jsonp(comments);
 		}
 	});
 };
