@@ -73,28 +73,57 @@
                 </div> 
         	</div>
         	
-
+</section>
+<section data-ng-controller="CommentsController as commentCtrl" data-ng-init="find()">
                 <!-- Comments Form -->
+               <form name="createCommentForm">
+                <fieldset>
                 <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form">
-                        <div class="form-group">
-                            
-                            <textarea class="form-control" rows="3"></textarea>
+                    <div class="form-group">
+                        <label class="control-label" for="comment">Leave a Comment</label>
+                           <div class="contorls">
+                            <input type='textarea' data-ng-model="commentCtrl.comment" id="comment" class="form-control" required></textarea>
                             <br>
                             <div class="comment-submit-btn">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-warning" ng-click="commentCtrl.create()" ng-disabled="createCommentForm.$invalid">Submit</button>
+                                <button class="btn btn-danger" ng-click="commentCtrl.cancel()" ng-disabled="createCommentForm.$invalid">Cancel</button>
                             </div>
                             </br>
                         </div>
-                    </form>
+                    </div>
+                    
                 </div>
-<comment-list></comment-list>
-        
+                </fieldset>
+                </form>
+
+
+    <!--Comments List-->
+<div class="list-group">
+    <div class ="row" ng-repeat="comment in commentCtrl.comments">
+        <div class="col-md-8">
+           <div class="comments-list">
+                <div class="media">
+                    <p class="pull-right"><small>5 days ago</small></p>
+                    <div class="media-left" id="userPhoto">
+                      <img src="http://www.peanut.com/media/catalog/product/cache/1/small_image/250x/8222f1cea6aad972bbfa3d2e81cdd009/r/o/roasted-cashews-whole-cashews-individual_1.jpg">
+                    </div>
+                    <div class="media-body">
+                        
+                      <h4 class="media-heading user_name"><span ng-bind="comment.commentBy"></span></h4>
+                         <span ng-bind = "commentCtrl.comment"></span>
+                      <p><small><a href="">Like</a><span ng-bind="comment.likes"></span></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+</section>        
         
         
         
     
         
 
-</section>
+
