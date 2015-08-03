@@ -426,7 +426,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				postBy: Authentication.user.displayName,
 				title: this.title,
 				content: this.content,
-				category: $scope.selectedCategory,
+				category: this.category,
 				topic: this.topic,
 				
 			});
