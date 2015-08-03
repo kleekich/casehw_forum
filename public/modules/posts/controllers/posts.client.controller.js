@@ -535,10 +535,11 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts',
 	function($scope, $stateParams, $location, Authentication, Comments, Posts) {
 		$scope.authentication = Authentication;
-		this.comments = Comments.query();
+		
 		// Create new Comment
 		$scope.create = function() {
 			// Create new Comment object
+			console.log('asfdasdfasfd');
 			var comment = new Comments ({
 				comment: this.comment,
 				commentTo: $stateParams.postId,
