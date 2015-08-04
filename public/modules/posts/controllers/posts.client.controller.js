@@ -316,9 +316,10 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		};
 		
 		//increment numlike by 1 for a post
-		this.like = function(likedPost) {
+		$scope.likePost = function(likedPost) {
+			console.log('press like!!!');
 			var post = likedPost;
-			
+			post.likes += 1; 
 			post.$update(function(){
 					
 			}, function(errorResponse) {

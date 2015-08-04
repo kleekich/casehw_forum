@@ -54,8 +54,8 @@ var PostSchema = new Schema({
 	},
 	
 	likes: {
-		type: String,
-		default: '0',
+		type: Number,
+		default: 0,
 		trim: true
 	},
 	comments: {
