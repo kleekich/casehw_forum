@@ -1,9 +1,9 @@
 'use strict';
 
-// Posts controller
+
 var postsApp = angular.module('posts');
 
-
+// Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
 		$scope.selectedCategory = 'Cashew Forum';
@@ -535,29 +535,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts',
 	function($scope, $stateParams, $location, Authentication, Comments, Posts) {
 		$scope.authentication = Authentication;
-		
-		// Create new Comment
-		$scope.create = function() {
-			// Create new Comment object
-			console.log('asfdasdfasfd');
-			var comment = new Comments ({
-				comment: this.comment,
-				commentTo: $stateParams.postId,
-				commentBy: Authentication.user.displayName
-				
-			});
-
-			// Redirect after save
-			comment.$save(function(response) {
-
-				// Clear form fields
-				$scope.comment = '';
-				$scope.commentTo = '';
-				$scope.commentBy = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+		$scope.currentPost = $stateParams.postId;
 
 		// Remove existing Comment
 		$scope.remove = function(comment) {
@@ -590,7 +568,39 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 		// Find a list of Comments
 		$scope.find = function() {
 			$scope.comments = Comments.query();
+			
 		};
+
+	}
+]);
+postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts',
+	function($scope, $stateParams, $location, Authentication, Comments, Posts) {
+		$scope.authentication = Authentication;
+		
+		// Create new Comment
+		$scope.createComment = function() {
+			// Create new Comment object
+			console.log('asfdasdfasfd');
+			var comment = new Comments ({
+				comment: this.comment,
+				commentTo: $stateParams.postId,
+				commentBy: Authentication.user.displayName
+				
+			});
+
+			// Redirect after save
+			comment.$save(function(response) {
+
+				// Clear form fields
+				$scope.comment = '';
+				$scope.commentTo = '';
+				$scope.commentBy = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+	
 
 	}
 ]);
