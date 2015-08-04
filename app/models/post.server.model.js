@@ -6,6 +6,20 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+
+/**
+ * LikedBy Schema
+ * 
+ **/
+var LikedBySchema = new Schema({
+	username: {
+		type: String,
+		required: 'username is required',
+		trim: true
+	}
+});
+
+
 /**
  * Post Schema
  */
@@ -54,9 +68,13 @@ var PostSchema = new Schema({
 	},
 	
 	likes: {
-		type: Number,
-		default: 0,
+		type: String,
+		default: '0',
 		trim: true
+	},
+	likedBy: {
+		type: String,
+		default: [LikedBySchema]
 	},
 	comments: {
 		type: String,

@@ -315,28 +315,55 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			$state.reload();
 		};
 		
+		$scope.post = Posts.get({ 
+				postId: $stateParams.postId
+			});
+		
+		if($scope.post.likedBy[Authentication.user.username.toString()] === null){
+			$scope.likeStatus = 'Like';
+		}else{
+			$scope.likeStatus = 'Unlike';
+		}
+		
+		
 		//increment numlike by 1 for a post
 		$scope.likePost = function(likedPost) {
-			console.log('press like!!!');
 			var post = likedPost;
-			post.likes += 1; 
-			post.$update(function(){
-					
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+			$scope.currPost = post;
+			var likeArray = likedPost.likedBy;
+			console.log(typeof(likeArray));
+	
+			var userName = Authentication.user.username;
 			
-			/*
-			if ( post ) { 
-				var post = new likedPost({
-				likes: this.likes + 1,
-			});
+			
+			if($scope.likeStatus === 'Like' && likeArray.indexOf(userName) ===-1){
+				console.log('Like Clicked');
+				console.log('likeArray.indexOf(userName):' + likeArray.indexOf(userName));
+				$scope.likeStatus = 'Unlike';
+				post.likes = parseInt(post.likes) + 1; 
+				post.likedBy.push(userName);
+				console.log(post.likedBy);
+				post.$update(function(){
+						
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}else if($scope.likeStatus === 'Unlike' && likeArray.indexOf(userName) !== -1){
+				console.log('Unlike Clicked');
+				$scope.likeStatus = 'Like';
+				post.likes = parseInt(post.likes) - 1;
+				var index = post.likedBy.indexOf(userName);
+				post.likedBy.splice(index, 1);
+				console.log(post.likedBy);
 				
-			} else {
-				
+				post.$update(function(){
+						
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
 			}
-			*/
 		};
+		
 		
 	
 		
@@ -429,6 +456,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				content: this.content,
 				category: this.category,
 				topic: this.topic,
+				likedBy: Authentication.user.username
 				
 			});
 
