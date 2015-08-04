@@ -201,7 +201,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		      	 $scope.ok = function () {
 		      	 	
 				    $modalInstance.close($scope.post);
-				  	$location.path('/posts');
+				  	$state.reload();
 		      	 };
 				
 				  $scope.cancel = function () {
@@ -573,14 +573,14 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 
 	}
 ]);
-postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts',
-	function($scope, $stateParams, $location, Authentication, Comments, Posts) {
+postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$state',
+	function($scope, $stateParams, $location, Authentication, Comments, Posts, $state) {
 		$scope.authentication = Authentication;
 		
 		// Create new Comment
 		$scope.createComment = function() {
 			// Create new Comment object
-			console.log('asfdasdfasfd');
+			
 			var comment = new Comments ({
 				comment: this.comment,
 				commentTo: $stateParams.postId,
@@ -590,11 +590,13 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 
 			// Redirect after save
 			comment.$save(function(response) {
-
+				console.log('asfdasdfasfd');
+				
 				// Clear form fields
 				$scope.comment = '';
 				$scope.commentTo = '';
 				$scope.commentBy = '';
+				$state.reload();
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
