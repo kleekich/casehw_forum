@@ -24,6 +24,7 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-utils-pagination/dirPagination.js'
 				
+				
 			]
 		},
 		css: [

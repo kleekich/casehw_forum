@@ -6,15 +6,13 @@ var postsApp = angular.module('posts');
 // Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
-		$scope.selectedCategory = 'Cashew Forum';
-		$scope.selectedSnippet = 'Welcome to Cashew Forum!';
+		$scope.forumGuideTitle = 'Cashew Forum';
+		$scope.forumGuideSnippet = 'Welcome to Cashew Forum! Select one of forum above!';
+		$scope.selectedCategory = Category.sharedCategory.title;
+		$scope.selectedSnippet = Category.sharedCategory.snippet;
 		$scope.animationsEnabled = true;
 		//Forum Categories data
 		$scope.categories = [
-			{   
-				title: 'Cashew Forum',
-				snippet: 'Welcome to Cashew Forum! '
-			},
 			{   
 				title: 'Introduce Yourself',
 				snippet: 'Get to know other cashew members, and build a cashew community!',
@@ -86,6 +84,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		$scope.selectCategory = function(categoryObj) {
 		  console.log('category selected: ' + categoryObj.title);
+		  $scope.forumGuideTitle = categoryObj.title;
+		  $scope.forumGuideSnippet = categoryObj.snippet;
 		  $scope.selectedCategory = categoryObj.title;
 		  $scope.selectedSnippet = categoryObj.snippet;
 		  Category.sharedCategory = categoryObj;//setting category object to Category service
@@ -93,58 +93,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		  $scope.hideListPostClientView = false;
 		};
 		
-		$scope.categories = [
-			
-			{
-				id: 0,
-				title: 'Introduce Yourself',
-				snippet: 'Get to know other cashew members',
-				topics: [
-					{ name: 'Friends',
-						numPosts: 0,
-						numNewPosts:0,
-					}
-					]
-			},
-			{
-				id: 1,
-				title: 'Share Your Ideas',
-				snippet: 'Share ideas, interests, strategies',
-				topics: [
-					{ name: 'Business Strategy',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'Custommer Strategy',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
-			},
-			{
-				id: 2,
-				title: 'Feedback For Cashew',
-				snippet: 'We likes to hear from you!',
-				topics: [
-					{ name: 'Q&A',
-						numPosts: 4,
-						numNewPosts:4,
-					},
-					{ name: 'feedBack',
-						numPosts: 1,
-						numNewPosts: 1,
-					},
-					{ name: 'Other Topics',
-						numPosts: 2,
-						numNewPosts: 2,
-					}
-				]
-			}
-		];
+	
 		
 		
 		this.authentication = Authentication;
@@ -246,12 +195,21 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				});
 			}
 		};
-
-	
+		
+		Category.sharedTopic = {
+						group: Category.sharedCategory.title,
+						label: '',
+						numPosts: 0
+					};
+		$scope.defaultTopic =  {
+						group: Category.sharedCategory.title,
+						label: '',
+						numPosts: 0
+					};
 		
 		$scope.selectTopic = function(topicObj) {
-			console.log('topic selected: ' + topicObj.label);
-			if(topicObj.label==='all'){
+			console.log('topic selected: ' + topicObj);
+			if(topicObj==='all'){
 				var topicArray= $scope.topics;
 				var allTopicString='';
 				var i=0;
@@ -328,6 +286,13 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				});
 			}
 		};
+		
+		$scope.backToList = function() { 
+		 	console.log('this is right back button!!!');
+    		window.history.back();
+    		$scope.selectCategory(Category.sharedCategory);
+    		$scope.selectTopic(Category.sharedTopic);
+  		};
 	
 
 	}
@@ -591,11 +556,14 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 				$scope.error = errorResponse.data.message;
 			});
 		};
-
+		 
+		 
 	
 
 	}
 ]);
+
+
 
 postsApp.directive('listPostsClientView', ['Posts', function(Posts){
 	return{

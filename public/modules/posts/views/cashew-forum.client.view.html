@@ -11,26 +11,22 @@
           <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
-            <li><a ng-click="reloadRoute()">Forum</a></li>
+            <li><a ng-click="reloadRoute()">Cashew Forum</a></li>
             <li class="active">{{selectedCategory}}</li>
           </ol>
         </div>
       </div>
       
-      <!--forum-guide-->
-	  <div class="forum-guide">
-	          <h2>{{selectedCategory}}</h2>
-	          <p>{{selectedSnippet}}</p>
-	  </div>
+    
 <!--Forum Main Cover-->
 
 <!--Board Board-->
-	<div id="forum-board" ng-hide="hideForumBoard">
+	<div id="forum-board" ng-hide="false">
 		<ul>
 			    <div class="row">
 			    	<li ng-repeat="category in categories">
 			    		<div class="col-md-4">
-			      			<a ng-click="selectCategory(category)">{{category.title}}</a>
+			      			<a ng-click="selectCategory(category); selectTopic(defaultTopic)">{{category.title}}</a>
 			      			<p>{{category.snippet}}</pZ>
 			      		</div>
 			    	</li>
@@ -38,9 +34,16 @@
 		</ul>
     </div> 
 <!--Forum Board-->
+  <!--forum-guide-->
+	  <div class="forum-guide">
+	          <h2>{{forumGuideTitle}}</h2>
+	          <p>{{forumGuideSnippet}}</p>
+	  </div>
 
-<!-- list-post.client.view -->
+<!-- list-post.client.view 
 <list-posts-client-view ng-hide="hideListPostClientView"></list-posts-client-view>
+-->
+<list-posts-client-view ng-hide="false"></list-posts-client-view>
 
 <!-- list-post.client.view -->
 
