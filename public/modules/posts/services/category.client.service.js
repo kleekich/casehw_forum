@@ -6,10 +6,13 @@ angular.module('posts').factory('Category', [
 		// ...
 		var sharedCategory ={};
 		var sharedTopic={};
+		var hidePostList=true;
 		// Public API
 		return {
 			sharedCategory,
-			sharedTopic
+			sharedTopic,
+			hidePostList
+			
 		};
 	}
 ]);

@@ -6,6 +6,7 @@ var postsApp = angular.module('posts');
 // Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
+		
 		$scope.forumGuideTitle = Category.sharedCategory.title;
 		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
 		$scope.selectedCategory = Category.sharedCategory.title;
@@ -78,7 +79,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		
 		$scope.hideForumBoard = false;
-		$scope.hideListPostClientView = true;
+		$scope.hideListPostClientView = Category.hidePostList;
 
 		
 		
@@ -90,7 +91,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		  $scope.selectedSnippet = categoryObj.snippet;
 		  Category.sharedCategory = categoryObj;//setting category object to Category service
 		  $scope.hideForumBoard = true;
-		  $scope.hideListPostClientView = false;
+		  Category.hidePostList = false;
+		  $scope.hideListPostClientView = Category.hidePostList;
 		};
 		
 	
@@ -201,11 +203,6 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 						label: '',
 						numPosts: 0
 					};
-		$scope.defaultTopic =  {
-						group: Category.sharedCategory.title,
-						label: '',
-						numPosts: 0
-					};
 		
 		$scope.selectTopic = function(topicObj) {
 			console.log('topic selected: ' + topicObj);
@@ -296,6 +293,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
     		console.log(Category.sharedCategory.snippet);
     		$scope.forumGuideTitle = Category.sharedCategory.title;
     		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
+    		$scope.hideListPostClientView = Category.hidePostList;
   		};
 	
 

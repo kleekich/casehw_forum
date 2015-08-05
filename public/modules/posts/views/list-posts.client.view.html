@@ -20,32 +20,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       
-                      <a class="navbar-brand" href="#">Recent Posts</a>
+                      <a class="navbar-brand">Recent Posts</a>
                     </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
                     <ul class="nav navbar-nav navbar-right">
                         
                             <select class="selectpicker" ng-model ='orderProp'>
-                                 <option value="-numLikes">Popular</a></li>
-                                 <option value="-postDate">Newest</a></li>
-                                 <option value="postDate">Oldest</a></li>
+                                 <option value="-likes">Popular</a></li>
+                                 <option value="-created">Newest</a></li>
+                                 <option value="created">Oldest</a></li>
                             </select>
                     
                     </ul>
                     <form class="navbar-form navbar-right" role="search">
                     
-                      <div class="form-group">
+                      
                         <button ng-click="postsCtrl.modalCreate('md')"  class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
-                        
-                      </div>
+                      
+                      
                        <div class="input-group">
-                          <input type="text" class="form-control" ng-model="searchText" placeholder="Search">
+                          <input type="text" class="form-control" ng-model="searchText" placeholder="Search &#128270">
                           <span class="input-group-btn">
-                          <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                           </span>
                         </div><!-- /input-group -->
-                    </form>
+                    
                    
                 </div>
             </nav>
