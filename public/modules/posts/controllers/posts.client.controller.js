@@ -4,8 +4,8 @@
 var postsApp = angular.module('posts');
 
 // Posts controller
-postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
-	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
+postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state', 'Forum',
+	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state, Forum) {
 		
 		$scope.forumGuideTitle = Category.sharedCategory.title;
 		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
@@ -104,9 +104,11 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		// Find existing Post
 		$scope.findOne = function() {
+			
 			$scope.post = Posts.get({ 
 				postId: $stateParams.postId
 			});
+			Forum.currPost = $scope.post;
 		};
 		//Open a modal window to Create a single post record
 		 
@@ -530,8 +532,8 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 
 	}
 ]);
-postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$state',
-	function($scope, $stateParams, $location, Authentication, Comments, Posts, $state) {
+postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$state', 'Forum',
+	function($scope, $stateParams, $location, Authentication, Comments, Posts, $state, Forum) {
 		$scope.authentication = Authentication;
 		
 		// Create new Comment
@@ -544,10 +546,18 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 				commentBy: Authentication.user.displayName
 				
 			});
-
+			//Update number of comments for the post
+			var post = Forum.currPost;
+			post.comments = parseInt(post.comments) + 1;
+			post.$update(function(){
+						
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+				
 			// Redirect after save
 			comment.$save(function(response) {
-				console.log('asfdasdfasfd');
+				
 				
 				// Clear form fields
 				$scope.comment = '';

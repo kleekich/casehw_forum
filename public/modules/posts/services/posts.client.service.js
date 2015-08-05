@@ -25,6 +25,15 @@ angular.module('posts')
 
 		
 	])
+	.factory('Forum',[
+		function(){
+			var currPost = {};
+			
+			return {
+				currPost
+			};
+		}
+	])
 	
 	.factory('Notify', ['$rootScope', function($rootScope) {
 			var notify = {};
