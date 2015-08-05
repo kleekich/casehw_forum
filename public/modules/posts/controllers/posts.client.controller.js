@@ -6,8 +6,8 @@ var postsApp = angular.module('posts');
 // Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state) {
-		$scope.forumGuideTitle = 'Cashew Forum';
-		$scope.forumGuideSnippet = 'Welcome to Cashew Forum! Select one of forum above!';
+		$scope.forumGuideTitle = Category.sharedCategory.title;
+		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
 		$scope.selectedCategory = Category.sharedCategory.title;
 		$scope.selectedSnippet = Category.sharedCategory.snippet;
 		$scope.animationsEnabled = true;
@@ -292,6 +292,10 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
     		window.history.back();
     		$scope.selectCategory(Category.sharedCategory);
     		$scope.selectTopic(Category.sharedTopic);
+    		console.log(Category.sharedCategory.title);
+    		console.log(Category.sharedCategory.snippet);
+    		$scope.forumGuideTitle = Category.sharedCategory.title;
+    		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
   		};
 	
 
