@@ -246,51 +246,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				});
 			}
 		};
-	
-	
-	
-	$scope.comments = [
-		{
-			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: 'mozzi',
-			content: 'Im in Spain now',
-			numLikes: 100
-	
-		},
-	
-		{	
-			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: 'Kangsik',
-			content: 'Have a nice trip!',
-			numLikes: 3
-	
-		},
-	
-		{
-		    postId: '55a9a2183dd4d91b08290cf1',
-			postBy: 'Nice guy',
-			content: 'Is this single page?',
-			numLikes: 1000
-	
-		},
-	
-		{
-			postId: '55a9a2183dd4d91b08290cf1',
-			postBy: 'Mozzi',
-			content: 'Nice guys!!',
-			numLikes: 24
-	
-	
-		},
-	
-		{
-			postId: '55a9aada3dd4d91b08290cf2',
-			postBy: 'Jake',
-			content: 'Tokyo was awesome!',
-			numLikes: 45
-	
-		}
-	];
+
 	
 		
 		$scope.selectTopic = function(topicObj) {
@@ -315,16 +271,25 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			$state.reload();
 		};
 		
-		$scope.post = Posts.get({ 
-				postId: $stateParams.postId
-			});
+		
+		
+		//Like System
+		
+		console.log('$scope.post:' + Posts.get({_id: $stateParams.postId}).toString());
+		$scope.currentPost = Posts.get({postId: $stateParams.postId});
+		//console.log('$scope.currentPost[postBy]:' + $scope.currentPost[{postId}]);
+		/*
+		if($scope.post.postBy === Authentication.user.displayName){
+				$scope.likeStatus = 'Likefggf';
+		}
+		
 		
 		if($scope.post.likedBy[Authentication.user.username.toString()] === null){
 			$scope.likeStatus = 'Like';
 		}else{
 			$scope.likeStatus = 'Unlike';
 		}
-		
+		*/
 		
 		//increment numlike by 1 for a post
 		$scope.likePost = function(likedPost) {
@@ -363,12 +328,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				});
 			}
 		};
-		
-		
 	
-		
-		
-		
+
 	}
 ]);
 

@@ -2,7 +2,7 @@
         
          
     <div class="list-group">
-        <div class ="row" ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText">
+        <div class ="row" dir-paginate="post in postsCtrl.posts  | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText | itemsPerPage: 5">
         	
                 <div class="well">
                     <div class="media">
@@ -33,3 +33,5 @@
 <div class="alert alert-warning text-center" data-ng-hide="!posts.$resolved || posts.length">
         No Posts yet, why don't you <a href="/#!/posts/create">create one</a>?
 </div>      
+
+<dir-pagination-controls></dir-pagination-controls>
