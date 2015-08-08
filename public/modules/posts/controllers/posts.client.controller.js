@@ -62,13 +62,13 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 						
 					},
 					{ 
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Feed Back',
 						numPosts: 0
 						
 					},
 					{ 	
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Other Topics',
 						numPosts: 0
 						
@@ -222,7 +222,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				
 		  		
 			}else{
-				$scope.selectedTopic=  topicObj.label;
+				
 				Category.sharedTopic = topicObj;
 			}
 		  };
@@ -234,22 +234,8 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		
 		//Like System
-		
-		//console.log('$scope.post:' + Posts.get({_id: $stateParams.postId}).toString());
-		$scope.currentPost = Posts.get({postId: $stateParams.postId});
-		//console.log('$scope.currentPost[postBy]:' + $scope.currentPost[{postId}]);
-		/*
-		if($scope.post.postBy === Authentication.user.displayName){
-				$scope.likeStatus = 'Likefggf';
-		}
-		
-		
-		if($scope.post.likedBy[Authentication.username.toString()] === null){
-			$scope.likeStatus = 'Like';
-		}else{
-			$scope.likeStatus = 'Unlike';
-		}
-		*/
+	
+	
 		
 		//increment numlike by 1 for a post
 		$scope.likePost = function(likedPost) {
@@ -322,7 +308,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				snippet: 'Share ideas, interests, strategies.',
 			},
 			{
-				title: 'Feedback For Cashew',
+				title: 'Feedback To Cashew',
 				snippet: 'We likes to hear from you!',
 				
 			}
@@ -355,19 +341,19 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 						
 					},
 					{
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Q&A',
 						numPosts: 0
 						
 					},
 					{ 
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Feed Back',
 						numPosts: 0
 						
 					},
 					{ 	
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Other Topics',
 						numPosts: 0
 						
@@ -425,7 +411,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 				snippet: 'Share ideas, interests, strategies.',
 			},
 			{
-				title: 'Feedback For Cashew',
+				title: 'Feedback To Cashew',
 				snippet: 'We likes to hear from you!',
 				
 			}
@@ -458,19 +444,19 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 						
 					},
 					{
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Q&A',
 						numPosts: 0
 						
 					},
 					{ 
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Feed Back',
 						numPosts: 0
 						
 					},
 					{ 	
-						group: 'Feedback For Cashew',
+						group: 'Feedback To Cashew',
 						label: 'Other Topics',
 						numPosts: 0
 						
