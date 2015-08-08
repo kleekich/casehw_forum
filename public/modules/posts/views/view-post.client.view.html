@@ -94,7 +94,7 @@
                 </form>
 
 </section>
-<section data-ng-controller='CommentsController as commentCtrl' data-ng-init="find()">
+<section data-ng-controller='CommentsController as commentsCtrl' data-ng-init="find()">
     <!--Comments List-->
 <div class="list-group">
     <div class ="row" ng-repeat="comment in comments | filter: {commentTo: currentPost}">
@@ -118,9 +118,9 @@
                         <div class="media-right">
                                 <div data-ng-show="authentication.user._id == comment.user._id">
                                 <div class="edit-and-delete-btns">
-                            	    <button class="btn btn-primary"  class='list-group-item'>
+                            	    <button class="btn btn-primary"  ng-click="commentsCtrl.modalUpdate('md', comment)" class='list-group-item'>
                                         <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
-                                    <button class="btn btn-danger" class='list-group-item' >
+                                    <button class="btn btn-danger" ng-click="commentsCtrl.remove(comment)" class='list-group-item' >
                                         <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
                                 </div>
                             </div>

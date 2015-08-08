@@ -95,7 +95,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		  $scope.hideListPostClientView = Category.hidePostList;
 		};
 		
-		$scope.notAuthorized = true;
+	
 		
 		
 		this.authentication = Authentication;
@@ -494,27 +494,66 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 	}
 ]);
 // Comments controller
-postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts',
-	function($scope, $stateParams, $location, Authentication, Comments, Posts) {
+postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$modal', '$log', '$state',
+	function($scope, $stateParams, $location, Authentication, Comments, Posts, $modal, $log, $state) {
 		$scope.authentication = Authentication;
 		$scope.currentPost = $stateParams.postId;
+		//Open a modal window to Update a single post record
 
-		// Remove existing Comment
-		$scope.remove = function(comment) {
+		  this.modalUpdate = function (size, selectedComment) {
+			
+		    var modalInstance = $modal.open({
+		      animation: $scope.animationsEnabled,
+		      templateUrl: 'modules/posts/views/edit-comment.client.view.html',
+		      controller: function ($scope, $modalInstance, comment) {
+		      	 $scope.comment = comment;
+		      	 
+		      	 $scope.ok = function () {
+		      	 	
+				    $modalInstance.close($scope.comment);
+				  	
+		      	 };
+				
+				  $scope.cancel = function () {
+				    $modalInstance.dismiss('cancel');
+				  };
+		      	 
+		      },
+		      size: size,
+		      resolve: {
+		        comment: function () {
+		          return selectedComment;
+		        }
+		      }
+		    });
+		
+		    modalInstance.result.then(function (selectedItem) {
+		      $scope.selected = selectedItem;
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+		  };
+
+		  	// Remove existing Comment
+		this.remove = function(comment) {
 			if ( comment ) { 
 				comment.$remove();
+				$state.reload();
+				
 
-				for (var i in $scope.comments) {
-					if ($scope.comments [i] === comment) {
-						$scope.comments.splice(i, 1);
+				for (var i in this.comments) {
+					if (this.comments[i] === comment) {
+						this.comments.splice(i, 1);
 					}
 				}
 			} else {
-				$scope.comment.$remove(function() {
-					$location.path('posts/' + $stateParams.postId);
+				this.comment.$remove(function() {
+					//delete then direct to list
+					$state.reload();
 				});
 			}
 		};
+		
 
 		// Update existing Comment
 		$scope.update = function() {
@@ -576,6 +615,23 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 		 
 		 
 	
+
+	}
+]);
+
+postsApp.controller('CommentsUpdateController', ['$scope', 'Comments',
+	function($scope, Posts, Category) {
+	
+		
+		// Update existing Comment
+		this.update = function(updatedComment) {
+			var comment = updatedComment;
+
+			comment.$update(function() {
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
 	}
 ]);

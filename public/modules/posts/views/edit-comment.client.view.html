@@ -1,0 +1,42 @@
+<section data-ng-controller="CommentsUpdateController as commentUpCtrl">
+     <div class="modal-header">
+            <h3 class="modal-title">Edit Comment</h3>
+        </div>
+        <div class="modal-body">
+                <form name="updateCommentForm">
+                    <fieldset>
+             
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                             <label for="name">Content</label>
+                             <textarea data-ng-model="comment.comment" id="comment" class="form-control" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+              
+                <div class="row">
+                     <div class="form-group">
+                        <div data-ng-show="error" class="text-center text-danger">
+                            <div clas-"alert alert-danger" role="alert">
+        					    <strong data-ng-bind="error"></strong>
+        					</div>
+        				</div>
+                    </div>
+                </div>
+                
+                
+               </fieldset> 
+                </form>
+            </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-click="commentUpCtrl.update(comment); ok()" ng-disabled="updateCommentForm.$invalid">Update & Close</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+		
+</section>
+
+
+
+ 
