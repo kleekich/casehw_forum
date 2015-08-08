@@ -12,6 +12,15 @@
                       <h4 class="media-heading user_name">{{comment.postBy}}</h4>
                          {{comment.content}}
                       <!--<p><small><a href="">Like</a>{{comment.likes}}</small></p>-->
+                      
+                            <div class="edit-and-delete-btns">
+                        	    <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item' ng-disabled ="notAuthorized">
+                                    <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
+                                <button class="btn btn-danger" ng-click="postsCtrl.remove(post)" class='list-group-item' >
+                                    <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
+                            </div>
+                          </div>
+                      </div>
                     </div>
                 </div>
             </div>

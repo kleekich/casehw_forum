@@ -6,7 +6,7 @@ var postsApp = angular.module('posts');
 // Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state', 'Forum',
 	function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state, Forum) {
-		
+		$scope.authentication = Authentication;
 		$scope.forumGuideTitle = Category.sharedCategory.title;
 		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
 		$scope.selectedCategory = Category.sharedCategory.title;
@@ -78,7 +78,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		
 		
-		$scope.hideForumBoard = false;
+	
 		$scope.hideListPostClientView = Category.hidePostList;
 
 		
@@ -95,7 +95,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		  $scope.hideListPostClientView = Category.hidePostList;
 		};
 		
-	
+		$scope.notAuthorized = true;
 		
 		
 		this.authentication = Authentication;
@@ -108,7 +108,10 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			$scope.post = Posts.get({ 
 				postId: $stateParams.postId
 			});
-			Forum.currPost = $scope.post;
+			
+
+			
+			
 		};
 		//Open a modal window to Create a single post record
 		 
@@ -232,7 +235,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		//Like System
 		
-		console.log('$scope.post:' + Posts.get({_id: $stateParams.postId}).toString());
+		//console.log('$scope.post:' + Posts.get({_id: $stateParams.postId}).toString());
 		$scope.currentPost = Posts.get({postId: $stateParams.postId});
 		//console.log('$scope.currentPost[postBy]:' + $scope.currentPost[{postId}]);
 		/*
@@ -241,7 +244,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		}
 		
 		
-		if($scope.post.likedBy[Authentication.user.username.toString()] === null){
+		if($scope.post.likedBy[Authentication.username.toString()] === null){
 			$scope.likeStatus = 'Like';
 		}else{
 			$scope.likeStatus = 'Unlike';
@@ -253,9 +256,9 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			var post = likedPost;
 			$scope.currPost = post;
 			var likeArray = likedPost.likedBy;
-			console.log(typeof(likeArray));
+			//console.log(typeof(likeArray));
 	
-			var userName = Authentication.user.username;
+			var userName = Authentication.username;
 			
 			
 			if($scope.likeStatus === 'Like' && likeArray.indexOf(userName) ===-1){
@@ -287,12 +290,10 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		};
 		
 		$scope.backToList = function() { 
-		 	console.log('this is right back button!!!');
+		 
     		window.history.back();
     		$scope.selectCategory(Category.sharedCategory);
     		$scope.selectTopic(Category.sharedTopic);
-    		console.log(Category.sharedCategory.title);
-    		console.log(Category.sharedCategory.snippet);
     		$scope.forumGuideTitle = Category.sharedCategory.title;
     		$scope.forumGuideSnippet = Category.sharedCategory.snippet;
     		$scope.hideListPostClientView = Category.hidePostList;
@@ -381,12 +382,13 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 		this.create = function() {
 			// Create new Post object
 			var post = new Posts ({
-				postBy: Authentication.user.displayName,
+				postBy: Authentication.user.username,
+				user : Authentication.user._id,
 				title: this.title,
 				content: this.content,
 				category: this.category,
 				topic: this.topic,
-				likedBy: Authentication.user.username
+				likedBy: Authentication.username
 				
 			});
 
@@ -400,6 +402,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				$scope.error = errorResponse.data.message;
 			});
 		};
+		
 		
 
 	}
@@ -543,7 +546,7 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 			var comment = new Comments ({
 				comment: this.comment,
 				commentTo: $stateParams.postId,
-				commentBy: Authentication.user.displayName
+				commentBy: Authentication.username
 				
 			});
 			//Update number of comments for the post

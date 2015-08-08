@@ -1,9 +1,5 @@
 <section data-ng-controller="PostsController as postsCtrl" data-ng-init="findOne()">
-<head>
-    <link rel="stylesheet" type="text/css" href="modules/posts/css/posts.css">
-    <link rel="stylesheet" type="text/css" href="modules/posts/css/comments.css">
-    
-</head>
+
 <!--single-post.html-->
 <h1></h1>
 <h1></h1>
@@ -52,9 +48,9 @@
                             <span><a href ng-click="likePost(post)" ng-model="post.likes"><span>{{likeStatus}} </span>  <i class="glyphicon glyphicon-thumbs-up"></i></a> <span ng-bind="post.likes"></span></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-ng-show="authentication.user._id == post.user._id">
                         <div class="edit-and-delete-btns">
-                    	    <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item' >
+                    	    <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>
                                 <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
                             <button class="btn btn-danger" ng-click="postsCtrl.remove(post)" class='list-group-item' >
                                 <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
