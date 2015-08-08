@@ -210,7 +210,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 					};
 		
 		$scope.selectTopic = function(topicObj) {
-			console.log('topic selected: ' + topicObj);
+			console.log('topic selected: ' + topicObj.label);
 			if(topicObj==='all'){
 				var topicArray= $scope.topics;
 				var allTopicString='';
@@ -224,6 +224,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 			}else{
 				
 				Category.sharedTopic = topicObj;
+				$scope.selectedTopic = topicObj.label;
 			}
 		  };
 		
@@ -361,7 +362,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				];
 				
 		$scope.selectedCategory = Category.sharedCategory.title;
-
+		$scope.selectedTopic = Category.sharedTopic.label;
 		// Create new Post
 		
 		this.create = function() {
