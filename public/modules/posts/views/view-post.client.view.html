@@ -107,11 +107,30 @@
                     </div>
                     <div class="media-body">
                         
-                      <h4 class="media-heading user_name"><span ng-bind="comment.commentBy"></span></h4>
-                         <span ng-bind = "comment.comment"></span>
-                      <p><small><a href>Like</a><span ng-bind="comment.likes"></span></small></p>
+                      <div class="row">
+                        <div class="col-md-8">
+                              <h4 class="media-heading user_name"><span ng-bind="comment.commentBy"></span></h4>
+                                 <span ng-bind = "comment.comment"></span>
+                              <p><small><a href>Like</a><span ng-bind="comment.likes"></span></small></p>
+                               
+                                
+                        </div> 
+                        <div class="media-right">
+                                <div data-ng-show="authentication.user._id == comment.user._id">
+                                <div class="edit-and-delete-btns">
+                            	    <button class="btn btn-primary"  class='list-group-item'>
+                                        <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
+                                    <button class="btn btn-danger" class='list-group-item' >
+                                        <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
+                                </div>
+                            </div>
+                        </div>
+                    
                     </div>
-                </div>
+                    
+                    
+                    </div>
+                </div><!--media-->
             </div>
         </div>
     </div>

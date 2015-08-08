@@ -546,10 +546,12 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 			var comment = new Comments ({
 				comment: this.comment,
 				commentTo: $stateParams.postId,
-				commentBy: Authentication.username
+				commentBy: Authentication.user.username,
+				user: $scope.authentication.user._id
 				
 			});
 			//Update number of comments for the post
+			/*
 			var post = Forum.currPost;
 			post.comments = parseInt(post.comments) + 1;
 			post.$update(function(){
@@ -557,7 +559,7 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
-				
+			*/	
 			// Redirect after save
 			comment.$save(function(response) {
 				
