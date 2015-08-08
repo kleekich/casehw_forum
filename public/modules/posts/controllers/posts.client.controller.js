@@ -109,7 +109,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 				postId: $stateParams.postId
 			});
 			
-
+			Forum.currPost = $scope.post;
 			
 			
 		};
@@ -234,36 +234,35 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
 		
 		
 		//Like System
-	
+		$scope.likeStatus = 'Like';
 	
 		
 		//increment numlike by 1 for a post
 		$scope.likePost = function(likedPost) {
+			var userId = Authentication.user._id;
 			var post = likedPost;
-			$scope.currPost = post;
-			var likeArray = likedPost.likedBy;
-			//console.log(typeof(likeArray));
+			var likeArray = post.likedBy;
+			console.log('$scope.post.likedBy[0]: ' + post.likedBy.keys);
+			console.log('Authentication.user._id: ' + Authentication.user._id);
 	
-			var userName = Authentication.username;
-			
-			
-			if($scope.likeStatus === 'Like' && likeArray.indexOf(userName) ===-1){
+	
+			if($scope.likeStatus === 'Like' && likeArray.indexOf(userId) === -1){
 				console.log('Like Clicked');
-				console.log('likeArray.indexOf(userName):' + likeArray.indexOf(userName));
+				console.log('likeArray.indexOf(userName):' + likeArray.indexOf(userId));
 				$scope.likeStatus = 'Unlike';
 				post.likes = parseInt(post.likes) + 1; 
-				post.likedBy.push(userName);
+				post.likedBy.push(userId);
 				console.log(post.likedBy);
 				post.$update(function(){
 						
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
-			}else if($scope.likeStatus === 'Unlike' && likeArray.indexOf(userName) !== -1){
+			}else if($scope.likeStatus === 'Unlike' && likeArray.indexOf(userId) !== -1){
 				console.log('Unlike Clicked');
 				$scope.likeStatus = 'Like';
 				post.likes = parseInt(post.likes) - 1;
-				var index = post.likedBy.indexOf(userName);
+				var index = post.likedBy.indexOf(userId);
 				post.likedBy.splice(index, 1);
 				console.log(post.likedBy);
 				
@@ -374,7 +373,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
 				content: this.content,
 				category: this.category,
 				topic: this.topic,
-				likedBy: Authentication.username
+				likedBy: Authentication.user.username
 				
 			});
 
@@ -480,8 +479,8 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
 	}
 ]);
 // Comments controller
-postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$modal', '$log', '$state',
-	function($scope, $stateParams, $location, Authentication, Comments, Posts, $modal, $log, $state) {
+postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments', 'Posts', '$modal', '$log', '$state', 'Forum',
+	function($scope, $stateParams, $location, Authentication, Comments, Posts, $modal, $log, $state, Forum) {
 		$scope.authentication = Authentication;
 		$scope.currentPost = $stateParams.postId;
 		//Open a modal window to Update a single post record
@@ -523,6 +522,8 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 		  	// Remove existing Comment
 		this.remove = function(comment) {
 			if ( comment ) { 
+				Forum.currPost.comments = parseInt(Forum.currPost.comments) - 1;
+				Forum.currPost.$update();
 				comment.$remove();
 				$state.reload();
 				
@@ -533,6 +534,8 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 					}
 				}
 			} else {
+				Forum.currPost.comments = parseInt(Forum.currPost.comments) - 1;
+				Forum.currPost.$update();
 				this.comment.$remove(function() {
 					//delete then direct to list
 					$state.reload();
@@ -576,15 +579,10 @@ postsApp.controller('CommentsCreateCroller', ['$scope', '$stateParams', '$locati
 				
 			});
 			//Update number of comments for the post
-			/*
-			var post = Forum.currPost;
-			post.comments = parseInt(post.comments) + 1;
-			post.$update(function(){
-						
-				}, function(errorResponse) {
-					$scope.error = errorResponse.data.message;
-				});
-			*/	
+			console.log('comment added');
+			Forum.currPost.comments = parseInt(Forum.currPost.comments) + 1;
+			Forum.currPost.$update();
+			
 			// Redirect after save
 			comment.$save(function(response) {
 				

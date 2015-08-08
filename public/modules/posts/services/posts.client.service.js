@@ -25,13 +25,15 @@ angular.module('posts')
 
 		
 	])
-	.factory('Forum',[
-		function(){
+	.factory('Forum',['$resource',
+		function($resource){
 			var currPost = {};
-			
-			return {
-				currPost
-			};
+			return $resource('posts/:postId', { postId: '@_id'
+			}, {
+				update: {
+					method: 'PUT'
+				}
+			});
 		}
 	])
 	
