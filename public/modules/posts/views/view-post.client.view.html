@@ -16,7 +16,7 @@
 
                 <!-- Title -->
                 <h1>{{post.title}}</h1>
-
+                
                 <!-- Author -->
                 <p class="lead">
                     by {{post.postBy}} 
@@ -26,9 +26,10 @@
 
                 <!-- Date/Time -->
                 <p>
-                    <span class="glyphicon glyphicon-time"></span> {{post.updated | date: "h:mma 'on' MMM d, y"}}
-
+                    <span class="glyphicon glyphicon-time"></span><span> {{post.updated | date: "h:mma 'on' MMM d, y"}} ({{post.updated | timeAgo}})</span>
                 </p>
+                
+              
                 <hr>
 
                 <!-- Preview Image -->
@@ -43,13 +44,15 @@
                 </p>
                 <hr>
                 <div class="row">
+                    <!--like
                     <div class="col-md-6">
                         <div class="like">
-                            <span><a href ng-click="likePost(post)" ng-model="post.likes"><span>{{likeStatus}} </span>  <i class="glyphicon glyphicon-thumbs-up"></i></a> <span ng-bind="post.likes"></span></span>
+                            <span><a href ng-click="likePost(post)" ng-model="post.likes"><span ng-show="authentication.user._id != post.user._id">{{likeStatus}} </span></a>  <i class="glyphicon glyphicon-thumbs-up"></i> <span ng-bind="post.likes"></span></span>
                         </div>
                     </div>
-                    <div class="col-md-6" data-ng-show="authentication.user._id == post.user._id">
-                        <div class="edit-and-delete-btns">
+                    -->
+                    <div class="pull-right" data-ng-show="authentication.user._id == post.user._id">
+                        <div class="edit-and-delete-btns" style="width:100%;">
                     	    <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>
                                 <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
                             <button class="btn btn-danger" ng-click="postsCtrl.remove(post)" class='list-group-item' >
@@ -62,22 +65,23 @@
         </div>
                 
     
-        	<div class="row">
-        	    <div class="comment-header">
-                    <h1><small class="pull-right">{{post.comments}} comments</small></h1>
-                    <h1> Comments </h1>
-                </div> 
-        	</div>
+        	
         	
 
 </section>
-<section data-ng-controller='CommentsCreateCroller as commentCreateCtrl' >
+<section data-ng-controller='CommentsController as commentsCtrl' data-ng-init="find()" >
+            <div class="row">
+        	    <div class="comment-header">
+                    <h1><small>{{filtered.length}} comments</small></h1>
+                    <h1> Comments </h1>
+                </div> 
+        	</div>
                 <!-- Comments Form -->
                <form name="createCommentForm">
                 <fieldset>
                 <div class="well">
                     <div class="form-group">
-                        <label class="control-label" for="comment">Leave a Comment</label>
+                        <label class="control-label" for="comment">{{authentication.user.username}}'s Comment</label>
                            <div class="contorls">
                             <input type='textarea' data-ng-model="comment" id="comment" class="form-control" required></textarea>
                             <br>
@@ -93,48 +97,46 @@
                 </fieldset>
                 </form>
 
-</section>
-<section data-ng-controller='CommentsController as commentsCtrl' data-ng-init="find()">
     <!--Comments List-->
 <div class="list-group">
-    <div class ="row" ng-repeat="comment in comments | filter: {commentTo: currentPost}">
-        <div class="col-md-8">
-           <div class="comments-list">
-                <div class="media">
-                    <p class="pull-right"><small>5 days ago</small></p>
+    
+                <div class="media" style="height: 100%;"ng-repeat="comment in filtered = (comments | filter: {commentTo: currentPost._id})">
+                    
                     <div class="media-left" id="userPhoto">
                       <img src="http://www.peanut.com/media/catalog/product/cache/1/small_image/250x/8222f1cea6aad972bbfa3d2e81cdd009/r/o/roasted-cashews-whole-cashews-individual_1.jpg">
                     </div>
+                    
                     <div class="media-body">
                         
-                      <div class="row">
-                        <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-10">
                               <h4 class="media-heading user_name"><span ng-bind="comment.commentBy"></span></h4>
                                  <span ng-bind = "comment.comment"></span>
+                              <!--like
                               <p><small><a href>Like</a><span ng-bind="comment.likes"></span></small></p>
-                               
-                                
-                        </div> 
-                        <div class="media-right">
+                              --> 
+                              </div>
+                              <div class="col-md-2">
+                              <p class="time-stamp"><small>{{comment.created|timeAgo}}</small></p>
                                 <div data-ng-show="authentication.user._id == comment.user._id">
-                                <div class="edit-and-delete-btns">
-                            	    <button class="btn btn-primary"  ng-click="commentsCtrl.modalUpdate('md', comment)" class='list-group-item'>
-                                        <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
-                                    <button class="btn btn-danger" ng-click="commentsCtrl.remove(comment)" class='list-group-item' >
-                                        <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
+                                    <div class="comment-edit-and-delete-btns">
+                                	    <button class="btn btn-primary"  ng-click="commentsCtrl.modalUpdate('md', comment)" class='list-group-item'>
+                                            <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
+                                        <button class="btn btn-danger" ng-click="commentsCtrl.remove(comment)" class='list-group-item' >
+                                            <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    
-                    </div>
-                    
-                    
-                    </div>
+                    </div><!--media body-->
                 </div><!--media-->
-            </div>
+                 </br>
+            
+           
+            
         </div>
     </div>
-    <hr>
+    
 </div>
 
         

@@ -3,7 +3,7 @@
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var posts = require('../../app/controllers/posts.server.controller');
-
+	
 	// Posts Routes
 	app.route('/posts')
 		.get(posts.list)
@@ -11,8 +11,9 @@ module.exports = function(app) {
 
 	app.route('/posts/:postId')
 		.get(posts.read)
-		.put(users.requiresLogin, posts.hasAuthorization, posts.update)
+		.put(users.requiresLogin, posts.hasAuthorization(['user']), posts.update)
 		.delete(users.requiresLogin, posts.hasAuthorization, posts.delete);
+
 
 	// Finish by binding the Post middleware
 	app.param('postId', posts.postByID);

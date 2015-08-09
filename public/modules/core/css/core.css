@@ -7,7 +7,7 @@ ul{
 
 .jumbotron {
     background-image:url(http://www.informationng.com/wp-content/uploads/2015/02/cashews.jpg);
-    height: 500px;
+    height: 430px;
     background-repeat: no-repeat;
     background-size: cover;
     padding-left: 200px;
@@ -22,31 +22,31 @@ ul{
     color:#FFF !important; 
     font-size: 50px;
     font-family: 'Shift', sans-serif;
-    border: 3px solid #ffffff;
     font-weight: bold;
-    padding-left: 8px;
-    margin-top:150px !important;
+    margin-top: 80px;
+    
+    
     
 }
 .jumbotron p{
 	color: #fff;
-    font-size: 20px;
 	font-weight: bold;
     font-family: 'Shift', sans-serif;
 }
 
 
-
-
-.breadcrumb{
-    font-size: 22px;
-    margin:initial !important;
-    padding-top:18px !important;
+#breadcrumb {
+    font-size:20px;
+    width:170%;
+   margin-bottom:0px;
+   border-radius:5px;
 }
+
+
 
 .row {
     
-    background-color:#f5f5f5;
+ 
     margin: initial !important;
 
     

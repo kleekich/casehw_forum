@@ -34,6 +34,7 @@ box-shadow: 0 0 10px #ccc;
 } 
 
 
+
 /**single post view**/
 
 img {
@@ -44,10 +45,13 @@ img {
  margin-top: 35px;
 
 }
-.edit-and-delete-btns {
-    position: absolute;
-  right: 20px;
+#userPhoto{ 
+ width: 10%;
+  height: 10%;
 }
+
+
+
 .like{
     position: absolute;
   left: 20px;

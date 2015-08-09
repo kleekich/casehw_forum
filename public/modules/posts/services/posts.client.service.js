@@ -9,7 +9,7 @@ angular.module('posts')
 			}, {
 				update: {
 					method: 'PUT'
-				}
+				},
 			});
 		}
 	])
@@ -27,6 +27,7 @@ angular.module('posts')
 	])
 	.factory('Forum',['$resource',
 		function($resource){
+			var filtered = {};
 			var currPost = {};
 			return $resource('posts/:postId', { postId: '@_id'
 			}, {

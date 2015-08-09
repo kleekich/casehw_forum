@@ -12,10 +12,9 @@ var mongoose = require('mongoose'),
  * 
  **/
 var LikedBySchema = new Schema({
-	username: {
-		type: String,
-		required: 'username is required',
-		trim: true
+	userId: {
+		type: Schema.ObjectId,
+		ref: 'User'
 	}
 });
 
@@ -73,8 +72,8 @@ var PostSchema = new Schema({
 		trim: true
 	},
 	likedBy: {
-		type: String,
-		default: [LikedBySchema]
+		type:Array,
+		default: []
 	},
 	comments: {
 		type: String,

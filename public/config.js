@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'cashew-forum';
-	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularUtils.directives.dirPagination'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularUtils.directives.dirPagination', 'yaru22.angular-timeago'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

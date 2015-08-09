@@ -2,13 +2,15 @@
     <!--Forum Main Cover -->
 
       <div class="jumbotron">
+          
           <h1>Share Your Cashew Ideas</h1>
           <p>Share your story, interest, and ideas.</p>
+          
       </div>
       <!-- breadcrumb -->
       <div class='row'>
         <div class= 'col-md-7'>
-          <ol class="breadcrumb">
+          <ol class="breadcrumb" id="breadcrumb">
             <li><a href="#">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href ng-click="reloadRoute()">Cashew Forum</a></li>
@@ -19,10 +21,10 @@
       
     
 <!--Forum Main Cover-->
-<hr>
+<br>
 
 <!--Board Board-->
-  <h2>Forum Categories</h2>
+  <h3 style='padding-left: 32%; margin-top:10px;'>Forum Categories</h3>
 	<div id="forum-board" ng-hide="false">
 		<ul>
 			    <div class="row">
@@ -35,11 +37,12 @@
 			    </div>
 		</ul>
     </div> 
+  <hr>
 <!--Forum Board-->
   <!--forum-guide-->
-	  <div class="forum-guide">
-	          <h2>{{forumGuideTitle}}</h2>
-	          <p>{{forumGuideSnippet}}</p>
+	  <div class="page-header">
+	          <h2>{{forumGuideTitle}}
+	          <small>{{forumGuideSnippet}}</small></h2>
 	  </div>
 
 <!-- list-post.client.view 

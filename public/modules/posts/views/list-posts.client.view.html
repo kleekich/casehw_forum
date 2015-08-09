@@ -24,26 +24,36 @@
                     </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
-                    <ul class="nav navbar-nav navbar-right">
                         
-                            <select class="selectpicker" ng-model ='orderProp'>
-                                 <option value="-likes">Popular</a></li>
-                                 <option value="-created">Newest</a></li>
-                                 <option value="created">Oldest</a></li>
-                            </select>
                     
-                    </ul>
-                    <form class="navbar-form navbar-right" role="search">
+                    <div class="navbar-form navbar-right" role="order">
+                        <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Order By
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#" ng-click="sortBy('-created')">Newest</a></li>
+                                <li><a href="#" ng-click="sortBy('created')">Oldest</a></li>
+                              </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-form navbar-right" role="search">
                     
                       
                         <button ng-click="postsCtrl.modalCreate('md')"  class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="ture"></span> New Post</button>
-                      
+                    
                       
                        <div class="input-group">
                           <input type="text" class="form-control" ng-model="searchText" placeholder="Search &#128270">
                           <span class="input-group-btn">
                           </span>
                         </div><!-- /input-group -->
+                        
+                    </div>
+                    
+                    
                     
                    
                 </div>

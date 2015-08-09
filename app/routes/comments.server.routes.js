@@ -3,7 +3,7 @@
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var comments = require('../../app/controllers/comments.server.controller');
-
+	
 	// Comments Routes
 	app.route('/comments')
 		.get(comments.list)
