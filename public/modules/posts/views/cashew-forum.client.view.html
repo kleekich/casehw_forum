@@ -24,19 +24,19 @@
 <br>
 
 <!--Board Board-->
-  <h3 style='padding-left: 32%; margin-top:10px;'>Forum Categories</h3>
+<div class="well">
+  <h3 style='padding-left: 35%; margin-top:10px;'>Forum Categories</h3>
 	<div id="forum-board" ng-hide="false">
-		<ul>
-			    <div class="row">
-			    	<li ng-repeat="category in categories">
-			    		<div class="col-md-4">
-			      			<a href ng-click="selectCategory(category); selectTopic('all')">{{category.title}}</a>
-			      			<p>{{category.snippet}}</pZ>
-			      		</div>
-			    	</li>
-			    </div>
-		</ul>
+			    <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-warning" ng-repeat="category in categories" href="#"  ng-click="selectCategory(category); selectTopic('all')" >
+                <h4 class="list-group-item-head">{{category.title}}</h4>
+                <p class="list-group-item-text">{{category.snippet}}</p>    
+            </a>
+           
+          </div>
+
     </div> 
+</div><!--well-->
   <hr>
 <!--Forum Board-->
   <!--forum-guide-->

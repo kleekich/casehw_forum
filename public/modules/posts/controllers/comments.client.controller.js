@@ -11,7 +11,7 @@ postsApp.controller('CommentsController', ['$scope', '$stateParams', '$location'
 		// Create new Comment
 		$scope.create = function() {
 			// Create new Comment object
-			console.log('asfdasdfasfd');
+			
 			var comment = new Comments ({
 				comment: this.comment,
 				commentTo: $stateParams.postId,

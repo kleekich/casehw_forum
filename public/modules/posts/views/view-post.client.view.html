@@ -53,7 +53,7 @@
                     -->
                     <div class="pull-right" data-ng-show="authentication.user._id == post.user._id">
                         <div class="edit-and-delete-btns" style="width:100%;">
-                    	    <button class="btn btn-primary" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>
+                    	    <button class="btn btn-warning" ng-click="postsCtrl.modalUpdate('md', post)" class='list-group-item'>
                                 <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
                             <button class="btn btn-danger" ng-click="postsCtrl.remove(post)" class='list-group-item' >
                                 <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
@@ -99,7 +99,7 @@
 
     <!--Comments List-->
 <div class="list-group">
-    
+            <div class="well">
                 <div class="media" style="height: 100%;"ng-repeat="comment in filtered = (comments | filter: {commentTo: currentPost._id})">
                     
                     <div class="media-left" id="userPhoto">
@@ -109,18 +109,18 @@
                     <div class="media-body">
                         
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                               <h4 class="media-heading user_name"><span ng-bind="comment.commentBy"></span></h4>
                                  <span ng-bind = "comment.comment"></span>
                               <!--like
                               <p><small><a href>Like</a><span ng-bind="comment.likes"></span></small></p>
                               --> 
                               </div>
-                              <div class="col-md-2">
+                              <div class="col-md-3">
                               <p class="time-stamp"><small>{{comment.created|timeAgo}}</small></p>
                                 <div data-ng-show="authentication.user._id == comment.user._id">
                                     <div class="comment-edit-and-delete-btns">
-                                	    <button class="btn btn-primary"  ng-click="commentsCtrl.modalUpdate('md', comment)" class='list-group-item'>
+                                	    <button class="btn btn-warning"  ng-click="commentsCtrl.modalUpdate('md', comment)" class='list-group-item'>
                                             <span><i class="glyphicon glyphicon-edit"></i></span>Edit</button> 
                                         <button class="btn btn-danger" ng-click="commentsCtrl.remove(comment)" class='list-group-item' >
                                             <span><i class="glyphicon glyphicon-trash"></i></span></button>                   
@@ -128,12 +128,10 @@
                                 </div>
                             </div>
                         </div>
+                       
                     </div><!--media body-->
                 </div><!--media-->
-                 </br>
-            
-           
-            
+                 </div>
         </div>
     </div>
     

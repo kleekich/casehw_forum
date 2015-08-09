@@ -23,7 +23,7 @@ ul{
     font-size: 50px;
     font-family: 'Shift', sans-serif;
     font-weight: bold;
-    margin-top: 80px;
+    margin-top: 75px;
     
     
     
@@ -100,9 +100,13 @@ forum-guide p{
   font-weight: bold;
 }
 
-#forum-board a {
+.list-group-item-head{
   color: #00b0ff;
   font-size: 20px;
+}
+
+.list-group-item-text{
+  font-size:18px;
 }
 
 #forum-board ul {

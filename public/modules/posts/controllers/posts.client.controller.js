@@ -6,7 +6,7 @@ var postsApp = angular.module('posts');
 // Posts controller
 postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authentication', 'Posts', '$modal', '$log', '$location', '$http', 'Category', '$state', 'Forum',
     function($scope, $stateParams, Authentication, Posts, $modal, $log, $location, $http, Category, $state, Forum) {
-        $scope.orderProp = "-created";
+        $scope.orderProp = '-created';
         $scope.authentication = Authentication;
         $scope.forumGuideTitle = Category.sharedCategory.title;
         $scope.forumGuideSnippet = Category.sharedCategory.snippet;
@@ -15,7 +15,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
         $scope.animationsEnabled = true;
         $scope.sortBy = function(choice){
             $scope.orderProp = choice;
-        }
+        };
         //Forum Categories data
         $scope.categories = [
             {   

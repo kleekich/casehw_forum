@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 	app.route('/posts/:postId')
 		.get(posts.read)
-		.put(users.requiresLogin, posts.hasAuthorization(['user']), posts.update)
+		.put(users.requiresLogin, posts.hasAuthorization, posts.update)
 		.delete(users.requiresLogin, posts.hasAuthorization, posts.delete);
 
 

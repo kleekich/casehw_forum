@@ -2,9 +2,10 @@
         
          
     <div class="list-group">
+                        <div class="well">
+
         <div class ="row" dir-paginate="post in postsCtrl.posts  | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText | orderBy: orderProp | itemsPerPage: 5 ">
         	
-                <div class="well">
                     <div class="media">
                             <a ng-href="#!/posts/{{post._id}}" class='list-group-item'>
                                 
@@ -27,13 +28,12 @@
                                        
                             </a>
                     </div><!--media-->
-                </div><!--well-->
+                
     </div><!--row-->
-
+</div><!--well-->
 
 </div><!--list-group-->
 <div class="alert alert-warning text-center" data-ng-hide="!posts.$resolved || posts.length">
         No Posts yet, why don't you <a href="/#!/posts/create">create one</a>?
 </div>      
 
-<dir-pagination-controls></dir-pagination-controls>
