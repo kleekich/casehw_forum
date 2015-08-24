@@ -23,7 +23,9 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-utils-pagination/dirPagination.js',
-				'public/lib/angular-timeago/dist/angular-timeago.js'
+				'public/lib/angular-timeago/dist/angular-timeago.js',
+				'public/modules/posts/view/parallex.js',
+				'public/lib/jquery/dist/jquery.min.js'
 				
 				
 			]

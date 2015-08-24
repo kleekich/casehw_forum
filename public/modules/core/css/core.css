@@ -3,19 +3,25 @@
 ul{
     list-style-type: none;
 }
+.bg{
+    background: url(http://www.informationng.com/wp-content/uploads/2015/02/cashews.jpg);
+}
 
 
 .jumbotron {
     background-image:url(http://www.informationng.com/wp-content/uploads/2015/02/cashews.jpg);
-    height: 430px;
+    height: 350px;
     background-repeat: no-repeat;
     background-size: cover;
     padding-left: 200px;
-    padding-top: 200px;
+    padding-top: 100px;
     padding-right: 200px;
-    margin:initial;
+    margin:initial !important; 
+    width:100%;
     
-    
+}
+.jumbotron .container{
+    width:100%;
 }
 
 .jumbotron h1{
@@ -23,8 +29,8 @@ ul{
     font-size: 50px;
     font-family: 'Shift', sans-serif;
     font-weight: bold;
-    margin-top: 75px;
-    
+    padding-top: 75px;
+    text-shadow: 0.3em,0.3em,0.3em;
     
     
 }

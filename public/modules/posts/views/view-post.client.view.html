@@ -72,7 +72,7 @@
 <section data-ng-controller='CommentsController as commentsCtrl' data-ng-init="find()" >
             <div class="row">
         	    <div class="comment-header">
-                    <h1><small>{{filtered.length}} comments</small></h1>
+                    <h1 style="float:right"><small>{{filtered.length}} comments</small></h1>
                     <h1> Comments </h1>
                 </div> 
         	</div>
@@ -99,8 +99,8 @@
 
     <!--Comments List-->
 <div class="list-group">
-            <div class="well">
-                <div class="media" style="height: 100%;"ng-repeat="comment in filtered = (comments | filter: {commentTo: currentPost._id})">
+            <div class="well" data-ng-show="filtered.length !== 0">
+                <div class="media" ng-repeat="comment in filtered = (comments | filter: {commentTo: currentPost._id})">
                     
                     <div class="media-left" id="userPhoto">
                       <img src="http://www.peanut.com/media/catalog/product/cache/1/small_image/250x/8222f1cea6aad972bbfa3d2e81cdd009/r/o/roasted-cashews-whole-cashews-individual_1.jpg">
