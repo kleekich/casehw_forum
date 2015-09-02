@@ -1,9 +1,9 @@
 
   <div>
     <carousel interval="myInterval" no-wrap="noWrapSlides">
-      <slide ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText | orderBy: orderProp | limitTo:4" active="post.active">
+      <slide ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | orderBy: '-created' | limitTo:4" active="post.active">
         
-        <img ng-src="{{images[$index].url}}" style="margin:auto; height:300px">
+        <img ng-src="{{images[$index].url}}" style="margin:auto; height:340px">
     
         <div class="carousel-caption">
           <h2>{{post.title}}</h2>

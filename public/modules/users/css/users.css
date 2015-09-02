@@ -12,3 +12,7 @@
 	right: 10px;
 	position: absolute;
 }
+
+.col-md-12 img {
+	width: 15%;
+}
