@@ -1,16 +1,18 @@
 
-
-  <div style="height: 305px">
+  <div>
     <carousel interval="myInterval" no-wrap="noWrapSlides">
-      <slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
+      <slide ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | filter: searchText | orderBy: orderProp | limitTo:4" active="post.active">
+        
+        <img ng-src="{{images[$index].url}}" style="margin:auto; height:300px">
+    
         <div class="carousel-caption">
-          <h4>Slide {{$index}}</h4>
-          <p>{{slide.text}}</p>
+          <h2>{{post.title}}</h2>
+          <p>by {{post.postBy}}</p>
         </div>
       </slide>
     </carousel>
   </div>
+  <!-- carousel control
   <div class="row">
     <div class="col-md-6">
       <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
@@ -26,7 +28,7 @@
       <br />Enter a negative number or 0 to stop the interval.
     </div>
   </div>
-
+-->
   
         <tabset>
             <tab heading="All Posts" ng-click="selectTopic('all')" ></tab>

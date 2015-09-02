@@ -293,21 +293,35 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
     
     
         //Carousel
-        $scope.myInterval = 5000;
-          $scope.noWrapSlides = false;
-          var slides = $scope.slides = [];
+        $scope.myInterval = 3300;
+        $scope.noWrapSlides = false;
+        $scope.images = [
+            {url:'https://www.thedollarbusiness.com/wp-content/uploads/2014/12/Cashew-Nuts-TheDollarBusiness.jpg'},
+            
+            {url:'http://f.tqn.com/y/homecooking/1/W/R/w/1/GettyImages-544546055.jpg'},
+            
+            {url:'http://cdn2.stylecraze.com/wp-content/uploads/2013/09/13-Best-Benefits-Of-Cashew-Nut-Oil-For-Skin-Hair-And-Health.jpg'},
+            
+            {url:'http://www.welltodolondon.com/wp-content/uploads/2014/11/045.jpg'}
+            
+            
+        ]; 
+         /*
+        var slides = $scope.slides = [];
+       
+        slides.push();
           $scope.addSlide = function() {
             var newWidth = 600 + slides.length + 1;
             slides.push({
               image: '//placekitten.com/' + newWidth + '/300',
-              text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-                ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+              text: ['1','2','3','4'][slides.length % 4] + ' ' +
+                ['a', 'b', 'c', 'd'][slides.length % 4]
             });
           };
           for (var i=0; i<4; i++) {
             $scope.addSlide();
           }
-
+        */
         
        
     }
