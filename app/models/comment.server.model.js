@@ -41,11 +41,14 @@ var CommentSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
+
 	likes: {
 		type: String,
 		default: '0',
 		trim: true
+
 	}
+
 });
 
 mongoose.model('Comment', CommentSchema);

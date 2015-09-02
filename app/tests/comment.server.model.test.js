@@ -31,6 +31,7 @@ describe('Comment Model Unit Tests:', function() {
 			comment = new Comment({
 				name: 'Comment Name',
 				user: user
+
 			});
 
 			done();
@@ -44,6 +45,7 @@ describe('Comment Model Unit Tests:', function() {
 				done();
 			});
 		});
+
 
 		it('should be able to show an error when try to save without name', function(done) { 
 			comment.name = '';
