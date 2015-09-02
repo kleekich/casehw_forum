@@ -28,7 +28,7 @@
 <br>
 
 <!--Board Board-->
-
+<!--
   <h3 style='padding-left: 35%; margin-top:10px;'>Forum Categories</h3>
 	<div id="forum-board" ng-hide="false">
 			    <div class="list-group">
@@ -40,7 +40,24 @@
           </div>
 
     </div> 
-
+  -->  
+   <accordion>
+    <accordion-group is-open="status.open">
+      <accordion-heading>
+      Forum Categories<i class="glyphicon" style="padding-left: 10px;" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </accordion-heading>
+      <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-warning" ng-repeat="category in categories" href="#"  ng-click="selectCategory(category); selectTopic('all')" >
+                <h4 class="list-group-item-head">{{category.title}}</h4>
+                <p class="list-group-item-text">{{category.snippet}}</p>    
+            </a>
+      </div>
+    </accordion-group>
+    </accordion>
+    
+    <div class="alert alert-warning alert-dismissible" ng-hide="hideForumBoard" role="alert">
+      <strong>Choose a Category!</strong> You can expand list of categories by clicking above.
+    </div>
   <hr>
 <!--Forum Board-->
   <!--forum-guide-->

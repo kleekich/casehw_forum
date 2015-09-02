@@ -13,6 +13,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
         $scope.selectedCategory = Category.sharedCategory.title;
         $scope.selectedSnippet = Category.sharedCategory.snippet;
         $scope.animationsEnabled = true;
+        $scope.hideAlert = false;
         
         
         $scope.sortBy = function(choice){
@@ -97,7 +98,9 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
           $scope.selectedSnippet = categoryObj.snippet;
           Category.sharedCategory = categoryObj;//setting category object to Category service
           $scope.hideForumBoard = true;
+          $scope.hideAlert = true;
           Category.hidePostList = false;
+          
           $scope.hideListPostClientView = Category.hidePostList;
         };
         
@@ -288,12 +291,13 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
             $scope.forumGuideTitle = Category.sharedCategory.title;
             $scope.forumGuideSnippet = Category.sharedCategory.snippet;
             $scope.hideListPostClientView = Category.hidePostList;
+        
         };
         $scope.numComment = Forum.filtered;
     
     
         //Carousel
-        $scope.myInterval = 3300;
+        $scope.myInterval = 2000;
         $scope.noWrapSlides = false;
         $scope.images = [
             {url:'https://www.thedollarbusiness.com/wp-content/uploads/2014/12/Cashew-Nuts-TheDollarBusiness.jpg'},
@@ -322,6 +326,34 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
             $scope.addSlide();
           }
         */
+        
+        /*Accordion*/
+     
+$scope.oneAtATime = true;
+
+  $scope.groups = [
+    {
+      title: 'Dynamic Group Header - 1',
+      content: 'Dynamic Group Body - 1'
+    },
+    {
+      title: 'Dynamic Group Header - 2',
+      content: 'Dynamic Group Body - 2'
+    }
+  ];
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+        
         
        
     }
