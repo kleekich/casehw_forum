@@ -1,5 +1,5 @@
 
-  <div>
+  <div class="myCarousel">
     <carousel interval="myInterval" no-wrap="noWrapSlides">
       <slide ng-repeat="post in postsCtrl.posts | filter: {category:selectedCategory} | filter: {topic: selectedTopic} | orderBy: '-created' | limitTo:4" active="post.active">
         

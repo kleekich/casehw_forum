@@ -27,11 +27,11 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
             },
             {
                 title: 'Share Your Ideas',
-                snippet: 'Share ideas, interests, strategies.',
+                snippet: 'Share ideas, interests, and strategies.',
             },
             {
                 title: 'Feedback To Cashew',
-                snippet: 'We likes to hear from you!',
+                snippet: 'We like to hear from you!',
                 
             }
         ];
@@ -70,7 +70,7 @@ postsApp.controller('PostsController', ['$scope', '$stateParams', 'Authenticatio
                     },
                     { 
                         group: 'Feedback To Cashew',
-                        label: 'Feed Back',
+                        label: 'FeedBack',
                         numPosts: 0
                         
                     },
