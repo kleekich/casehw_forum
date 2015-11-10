@@ -419,7 +419,7 @@ postsApp.controller('PostsCreateController', ['$scope', 'Posts', 'Notify', 'Auth
                     },
                     { 
                         group: 'Feedback To Cashew',
-                        label: 'Feed Back',
+                        label: 'Feedback',
                         numPosts: 0
                         
                     },
@@ -522,7 +522,7 @@ postsApp.controller('PostsUpdateController', ['$scope', 'Posts', 'Category',
                     },
                     { 
                         group: 'Feedback To Cashew',
-                        label: 'Feed Back',
+                        label: 'Feedback',
                         numPosts: 0
                         
                     },
